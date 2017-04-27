@@ -207,7 +207,7 @@
         },
         {
           "name": "name",
-          "type": "The name of the file",
+          "type": "String",
           "info": "File Id",
           "required": false
         }
@@ -222,7 +222,7 @@
     },
     {
       "name": "verifyFileAcceptance",
-      "description": "",
+      "description": "Verify that a file will be accepted by Box before you send all the bytes over the wire. ",
       "args": [{
         "name": "accessToken",
         "type": "String",
@@ -231,7 +231,7 @@
       },
         {
           "name": "name",
-          "type": "The name of the file",
+          "type": "String",
           "info": "File Id",
           "required": true
         },
@@ -267,20 +267,20 @@
       },
         {
           "name": "fileId",
-          "type": "File Id",
+          "type": "String",
           "info": "File Id",
           "required": false
         },
         {
           "name": "name",
-          "type": "The new name for the file",
-          "info": "File Id",
+          "type": "String",
+          "info": "The new name for the file",
           "required": false
         },
         {
           "name": "description",
-          "type": "The new description for the file",
-          "info": "File Id",
+          "type": "String",
+          "info": "The new description for the file",
           "required": false
         },
         {
@@ -860,7 +860,7 @@
     },
     {
       "name": "updateFolder",
-      "description": "Create a new folder.",
+      "description": "Update a folder.",
       "args": [{
         "name": "accessToken",
         "type": "String",
@@ -1618,7 +1618,7 @@
     },
     {
       "name": "getFileSingleMetadata",
-      "description": "Used to retrieve all metadata associated with a given file",
+      "description": "Get the metadata instance for a file.",
       "args": [{
         "name": "accessToken",
         "type": "String",

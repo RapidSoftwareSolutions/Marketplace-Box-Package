@@ -7,7 +7,7 @@
 # Box Package
 Connect to the Box Cloud Storage API to manage, share, and upload files to the cloud. Test an API call in your browser and export the code snippet into your app.
 * Domain: [box.com](https://box.com)
-* Credentials: accessToken
+* Credentials: clientId, clientSecret
 
 ## How to get credentials:
 1. Get authorization code for this [instruction](https://developer.box.com/reference#authorize).
@@ -20,8 +20,8 @@ Returns access tokens. An access token is a data string that enables Box to veri
 | Field       | Type  | Description
 |-------------|-------|----------
 | code        | String| The authorization code returned by Box in response to a successfull authentication request.
-| clientId    | String| The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
-| clientSecret| String| The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
+| clientId    | credentials| The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
+| clientSecret| credentials| The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
 
 ## Box.revokeAccessToken
 Revoke endpoint, the endpoint that revokes access tokens, or to put it another way, the endpoint that ends sessions, logging users out.
@@ -29,8 +29,8 @@ Revoke endpoint, the endpoint that revokes access tokens, or to put it another w
 | Field       | Type  | Description
 |-------------|-------|----------
 | token       | String| An ```access token``` or ```refresh token``` supplied by Box in response to a token request. When either token is supplied with this request, both will be revoked.
-| clientId    | String| The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
-| clientSecret| String| The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
+| clientId    | credentials| The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
+| clientSecret| credentials| The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled
 
 ## Box.getFileInfo
 Get information about a file.

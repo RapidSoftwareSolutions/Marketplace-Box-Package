@@ -4,7 +4,7 @@ $app->post('/api/Box/createFileSharedLink', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','id', 'endpoint']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','id', 'endpoint','sharedLinkAccess']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -17,10 +17,8 @@ $app->post('/api/Box/createFileSharedLink', function ($request, $response) {
     $fields = 'shared_link';
     $endpoint = $post_data['args']['endpoint'];
 
-    if(!empty($post_data['args']['sharedLinkAccess']))
-    {
-        $data['shared_link'] = ["access"=>$post_data['args']['sharedLinkAccess']];
-    }
+    $data['shared_link'] = ["access"=>$post_data['args']['sharedLinkAccess']];
+
     if(!empty($post_data['args']['sharedLinkPassword']))
     {
         $data['shared_link'] = ["password"=>$post_data['args']['sharedLinkPassword']];

@@ -69,7 +69,7 @@ Uploading a new file version is performed in the same way as uploading a file. T
 | accessToken| String              | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String              | File Id
 | file       | File                | Uploaded file
-| name       | The name of the file| File Id
+| name       | String| New file name
 
 ## Box.verifyFileAcceptance
 Method description
@@ -77,7 +77,7 @@ Method description
 | Field      | Type                | Description
 |------------|---------------------|----------
 | accessToken| String              | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| name       | The name of the file| File Id
+| name       | String| File name
 | parentId   | String              | The ID of the parent folder. Use ```0``` for the root folder.
 | size       | String              | The size of the file in bytes
 
@@ -87,9 +87,9 @@ Update the information about a file, including renaming or moving the file.
 | Field                           | Type                            | Description
 |---------------------------------|---------------------------------|----------
 | accessToken                     | String                          | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fileId                          | File Id                         | File Id
-| name                            | The new name for the file       | File Id
-| description                     | The new description for the file| File Id
+| fileId                          | String                         | File Id
+| name                            | String| The new name for the file
+| description                     | String| The new description for the file
 | parentId                        | String                          | The ID of the parent folder. Use '0' for the root folder.
 | sharedLinkAccess                | String                          | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
 | sharedLinkPassword              | String                          | The password required to access the shared link. Set to ```null``` to remove the password.

@@ -18,7 +18,7 @@ $app->post('/api/Box/getEnterpriseUsers', function ($request, $response) {
     $optionalParam = ['userType'=>'user_type', 'filterTerm'=>'filter_term','fields'=>'fields','offset'=>'offset','limit'=>'limit'];
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

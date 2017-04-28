@@ -22,7 +22,7 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
 
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

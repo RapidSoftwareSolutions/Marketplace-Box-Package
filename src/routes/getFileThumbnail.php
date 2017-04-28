@@ -18,7 +18,7 @@ $app->post('/api/Box/getFileThumbnail', function ($request, $response) {
     $optionalParam = ['minHeight'=>'min_height', 'minWidth'=>'min_width', 'maxHeight'=>'max_height', 'maxWidth'=>'max_width'];
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

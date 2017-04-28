@@ -17,7 +17,7 @@ $app->post('/api/Box/getTrashedItems', function ($request, $response) {
     $optionalParam = ['fields'=>'fields','offset'=>'offset', 'limit'=>'limit'];
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

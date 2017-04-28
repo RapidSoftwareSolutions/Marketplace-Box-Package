@@ -19,7 +19,7 @@ $app->post('/api/Box/createUser', function ($request, $response) {
     $optionalParam = ['role'=>'role', 'language'=>'language','isSyncEnabled'=>'is_sync_enabled','jobTitle'=>'job_title','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','canSeeManagedUsers'=>'can_see_managed_users','status'=>'status'];
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

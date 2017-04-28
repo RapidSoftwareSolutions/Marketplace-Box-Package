@@ -19,7 +19,7 @@ $app->post('/api/Box/createAppUser', function ($request, $response) {
     $optionalParam = ['fields'=>'fields', 'notify'=>'notify','enterprise'=>'enterprise','language'=>'language','jobTitle'=>'jobTitle','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','status'=>'status'];
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
         }

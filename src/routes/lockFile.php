@@ -25,7 +25,7 @@ $app->post('/api/Box/lockFile', function ($request, $response) {
     $data['lock']['type'] = "lock";
     foreach ($post_data['args'] as $key=>$value)
     {
-        if(array_key_exists($key, $optionalParam))
+        if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data['lock'][$optionalParam[$key]] = $value;
         }

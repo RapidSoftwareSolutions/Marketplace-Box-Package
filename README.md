@@ -665,5 +665,5 @@ Move all of the items owned by a user into a new folder in another user’s acco
 | ownedById  | String | The ID of the user who the folder will be transferred to
 | fields     | String | The email address to add to the account as an alias
 | notify     | Boolean| Whether the destination user should receive email notification of the transfer
-| login      | String | The email alias to become the primary email
+
 

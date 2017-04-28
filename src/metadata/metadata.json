@@ -2489,12 +2489,6 @@
           "type": "Boolean",
           "info": "Whether the destination user should receive email notification of the transfer",
           "required": false
-        },
-        {
-          "name": "login",
-          "type": "String",
-          "info": "The email alias to become the primary email",
-          "required": true
         }
       ],
       "callbacks": [{

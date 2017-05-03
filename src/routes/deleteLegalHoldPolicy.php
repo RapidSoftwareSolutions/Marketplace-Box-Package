@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/deleteLegalHoldPolicy', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','policyId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,9 +12,8 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
-
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $policyId = $post_data['args']['policyId'];
+    $query_str = $settings['default_url'] . "legal_hold_policies/$policyId";
     $client = $this->httpClient;
 
     try {

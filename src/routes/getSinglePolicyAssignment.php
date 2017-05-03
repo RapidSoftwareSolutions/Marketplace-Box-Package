@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/getSinglePolicyAssignment', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','assignmentId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,13 +12,13 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
+    $assignmentId = $post_data['args']['assignmentId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $query_str = $settings['default_url'] . "legal_hold_policy_assignments/$assignmentId";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->get($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ]

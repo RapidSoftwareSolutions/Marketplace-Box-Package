@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/getRetentionPolicies', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,16 +12,26 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $data = [];
+    if(!empty($post_data['args']['policyName'])){
+        $data['policy_name'] = $post_data['args']['policyName'];
+    }
+    if(!empty($post_data['args']['policyType'])){
+        $data['policy_type'] = $post_data['args']['policyType'];
+    }
+    if(!empty($post_data['args']['createdByUserId'])){
+        $data['created_by_user_id'] = $post_data['args']['createdByUserId'];
+    }
+    $query_str = $settings['default_url'] . "retention_policies";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->get($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

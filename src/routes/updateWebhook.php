@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/updateWebhook', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','webhookId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,16 +12,38 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
+    $webhookId = $post_data['args']['webhookId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $data = [];
+
+    if(!empty($post_data['args']['targetId'])){
+        $data['target']['id'] = $post_data['args']['targetId'];
+    }
+    if(!empty($post_data['args']['targetType'])){
+        $data['target']['type'] = $post_data['args']['targetType'];
+    }
+    if(!empty($post_data['args']['address'])){
+        $data['address'] = $post_data['args']['address'];
+    }
+    if(!empty($post_data['args']['triggers'])){
+        if(explode(",",$post_data['args']['triggers'])){
+            foreach (explode(",",$post_data['args']['triggers']) as $item)
+                $data['triggers'][] = $item;
+        }
+        else{
+            $data['triggers'] = $post_data['args']['triggers'];
+        }
+    }
+
+    $query_str = $settings['default_url'] . "webhooks/$webhookId/";
     $client = $this->httpClient;
-
     try {
-        $resp = $client->delete($query_str, [
+
+        $resp = $client->put($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

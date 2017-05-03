@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/createWebhook', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','targetType','targetId','triggers','address']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,16 +12,27 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $data['target']['id'] = $post_data['args']['targetId'];
+    $data['target']['type'] = $post_data['args']['targetType'];
+    if(explode(",",$post_data['args']['triggers'])){
+        foreach (explode(",",$post_data['args']['triggers']) as $item)
+        $data['triggers'][] = $item;
+    }
+    else{
+        $data['triggers'] = $post_data['args']['triggers'];
+    }
+
+    $data['address'] = $post_data['args']['address'];
+    $query_str = $settings['default_url'] . "webhooks";
     $client = $this->httpClient;
-
     try {
-        $resp = $client->delete($query_str, [
+
+        $resp = $client->post($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

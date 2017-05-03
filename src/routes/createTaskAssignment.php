@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/createTaskAssignment', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','taskId','assignToId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,16 +12,24 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $data['task']['type'] = 'task';
+    $data['task']['id'] = $post_data['args']['taskId'];
+    $data['assign_to']['id'] = $post_data['args']['assignToId'];
+
+    if(!empty($post_data['args']['assignToLogin'])){
+        $data['assign_to']['login'] = $post_data['args']['assignToLogin'];
+    }
+
+    $query_str = $settings['default_url'] . "task_assignments";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->post($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

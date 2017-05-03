@@ -1,8 +1,4 @@
-<p align="left">
-  <a href="https://rapidapi.com/package/Box/functions?utm_source=RapidAPIGitHub_BoxFunctions&utm_medium=button&utm_content=RapidAPI_GitHub">
-    <img src="https://storage.googleapis.com/rapidapi-temp/background.png"/>
-  </a>
-</p>
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/Box/functions?utm_source=RapidAPIGitHub_BoxFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
 
 # Box Package
 Connect to the Box Cloud Storage API to manage, share, and upload files to the cloud. Test an API call in your browser and export the code snippet into your app.
@@ -666,4 +662,706 @@ Move all of the items owned by a user into a new folder in another user’s acco
 | fields     | String | The email address to add to the account as an alias
 | notify     | Boolean| Whether the destination user should receive email notification of the transfer
 
+## Box.getGroup
+Get information about a group.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupId    | String| Group ID
+| fields     | String| The email address to add to the account as an alias
+
+## Box.createGroup
+Create a new group.
+
+| Field                 | Type  | Description
+|-----------------------|-------|----------
+| accessToken           | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| name                  | String| The name of the new group to be created
+| fields                | String| The email address to add to the account as an alias
+| provenance            | String| Typically used to track the external source where the group is coming from. Retrieved through the fields parameter.
+| externalSyncIdentifier| String| Typically used as a group identifier for groups coming from an external source. Retrieved through the fields parameter.
+| description           | String| Description of the group. Retrieved through the fields parameter.
+
+## Box.updateGroup
+Update a group.
+
+| Field                 | Type  | Description
+|-----------------------|-------|----------
+| accessToken           | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupId               | String| Group ID
+| fields                | String| The email address to add to the account as an alias
+| name                  | String| The name of the new group to be created
+| provenance            | String| Typically used to track the external source where the group is coming from. Retrieved through the fields parameter.
+| externalSyncIdentifier| String| Typically used as a group identifier for groups coming from an external source. Retrieved through the fields parameter.
+| description           | String| Description of the group. Retrieved through the fields parameter.
+
+## Box.deleteGroup
+Delete a group.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupId    | String| Group ID
+
+## Box.getEnterpriseGroups
+Returns all of the groups for given enterprise. Must have permissions to see an enterprise's groups.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| name       | String| Only return groups whose name contains a word starting with the given string (case insensitive)
+| fields     | String| The email address to add to the account as an alias
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.getMembership
+Fetches a specific group membership entry.
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupMembershipId| String| Group membership id
+
+## Box.createMembership
+Add a member to a group.
+
+| Field            | Type   | Description
+|------------------|--------|----------
+| accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| userId           | String | The ID of the user to add to the group
+| groupId          | String | The ID of the group to add the user into.
+| role             | String | The role of the user in the group. Default is “member” option for “admin”
+| canRunReports    | Boolean| 
+| canInstantLogin  | Boolean| 
+| canCreateAccounts| Boolean| 
+| canEditAccounts  | Boolean| 
+
+## Box.updateMembership
+Fetches a specific group membership entry.
+
+| Field            | Type   | Description
+|------------------|--------|----------
+| accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupMembershipId| String | Membership Id
+| role             | String | The role of the user in the group. Default is “member” option for “admin”
+| canRunReports    | Boolean| 
+| canInstantLogin  | Boolean| 
+| canCreateAccounts| Boolean| 
+| canEditAccounts  | Boolean| 
+
+## Box.deleteMembership
+Delete a group membership.
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupMembershipId| String| Membership Id
+
+## Box.getGroupMemberships
+Returns all of the members for a given group if the requesting user has access.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupId    | String| Group id
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.getUserMemberships
+Returns all of the group memberships for a given user. Note this is only available to group admins. To retrieve group memberships for the user making the API request, use the users/me/memberships endpoint.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| userId     | String| User id
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.getGroupCollaborations
+Returns all of the group collaborations for a given group. Note this is only available to group admins.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| groupId    | String| Group id
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.getCollaboration
+Get information about a collaboration.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| collabId   | String| Collaboration Id
+| fields     | String| The email address to add to the account as an alias
+
+## Box.createCollaboration
+Create a new collaboration that grants a user or group access to a file or folder in a specific role.
+
+| Field            | Type   | Description
+|------------------|--------|----------
+| accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fields           | String | The email address to add to the account as an alias
+| notify           | Boolean| Determines if the user (or all the users in the group) will receive email notifications
+| itemType         | String | file or folder
+| itemId           | String | The ID of the file or folder that access is granted to
+| accessibleByType | String | user or group
+| accessibleById   | String | The ID of the user or group that is granted access
+| accessibleByLogin| String | The email address of the person to grant access to. Use instead of id to invite new users
+| role             | String | The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner
+| canViewPath      | Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
+
+## Box.updateCollaboration
+Update a collaboration.
+
+| Field      | Type   | Description
+|------------|--------|----------
+| accessToken| String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| collabId   | String | Collaboration Id
+| fields     | String | The email address to add to the account as an alias
+| role       | String | The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner
+| status     | String | The status of the collaboration invitation. Can be accepted, pending, or rejected.
+| canViewPath| Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
+
+## Box.deleteCollaboration
+Delete a collaboration.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| collabId   | String| Collaboration Id
+
+## Box.getPendingCollaborations
+Get all pending collaboration invites for a user.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fields     | String| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.getSingleComment
+Get information about a comment.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| commentId  | String| Comment Id
+
+## Box.createComment
+Create a new comment.
+
+| Field        | Type  | Description
+|--------------|-------|----------
+| accessToken  | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| itemType     | String| The type of the item that this comment will be placed on. Can be file or comment
+| itemId       | String| The ID of the item that this comment will be placed on
+| message      | String| The text of the comment
+| taggedMessage| String| The text of the comment, including @[userid:Username] somewhere in the message to mention the user, which will send them a direct email, letting them know they’ve been mentioned in a comment
+
+## Box.updateComment
+Update a comment.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| commentId  | String| The ID of the comment
+| message    | String| The text of the comment
+
+## Box.deleteComment
+Delete a comment.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| commentId  | String| The ID of the comment
+
+## Box.getWeblink
+Get information about a web link.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webLinkId  | String| The ID of the web link
+
+## Box.createWebLink
+Create a new web link.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| url        | String| The URL the web link points to. Must start with "http://" or "https://".
+| parentId   | String| The ID of the parent folder where you're creating the web link
+| name       | String| Name of the web link. Defaults to the URL if not set.
+| description| String| Description of the web link
+
+## Box.updateWebLink
+Update a web link.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webLinkId  | String| The ID of the web link
+| url        | String| The UR the web link points to. Must start with "http://" or "https://".
+| parentId   | String| The ID of the parent folder where you're creating the web link
+| name       | String| Name of the web link. Defaults to the URL if not set.
+| description| String| Description of the web link
+
+## Box.deleteWebLink
+Move a web link to the trash.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webLinkId  | String| The ID of the web link
+
+## Box.getUserEvents
+Get events for a given user. A chunk of event objects is returned for the user based on the parameters passed in. Parameters indicating how many chunks are left as well as the next stream_position are also returned.
+
+| Field         | Type  | Description
+|---------------|-------|----------
+| accessToken   | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| streamPosition| String| The location in the event stream from which you want to start receiving events. You can specify the special value now to get 0 events and the latest stream_position value. Specifying 0 will return all available events.
+| limit         | Number| The maximum number of items to return. The default is 100 and the maximum is 500.
+
+## Box.getEnterpriseEvents
+Retrieves up to a year' events for all users in an enterprise. Upper and lower bounds as well as filters can be applied to the results.
+
+| Field         | Type  | Description
+|---------------|-------|----------
+| accessToken   | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| eventType     | String| A comma-separated list of event types. Only matching events are returned.
+| streamPosition| String| The location in the event stream from which you want to start receiving events. You can specify the special value now to get 0 events and the latest stream_position value. Specifying 0 will return all available events.
+| limit         | Number| The maximum number of items to return. The default is 100 and the maximum is 500.
+
+## Box.getWatermarkOnFile
+Used to retrieve the watermark for a corresponding Box file.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileId     | String| File ID
+
+## Box.applyWatermarkOnFile
+Used to apply or update the watermark for a corresponding Box file. The endpoint accepts a JSON body describing the watermark to apply.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileId     | String| File ID
+
+## Box.removeWatermarkOnFile
+Used to remove the watermark for a corresponding Box file.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileId     | String| File ID
+
+## Box.getWatermarkOnFolder
+Used to retrieve the watermark for a corresponding Box folder.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| folderId   | String| Folder ID
+
+## Box.applyWatermarkOnFolder
+Used to apply or update the watermark for a corresponding Box folder. The endpoints accepts a JSON body describing the watermark to apply.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| folderId   | String| Folder ID
+
+## Box.removeWatermarkOnFolder
+Used to remove the watermark for a corresponding Box folder.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| folderId   | String| Folder ID
+
+## Box.getDevicePin
+Gets information about an individual device pin.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| devicePinId| String| Device pin ID
+
+## Box.deleteDevicePin
+Delete individual device pin
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| devicePinId| String| Device pin ID
+
+## Box.getEnterpriseDevicePins
+Gets all the device pins within a given enterprise. Must be an enterprise admin with the manage enterprise scope to make this call.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| enterpriseId| String| Enterprise ID
+| limit       | String| The maximum number of items to return. The default is 100 and the maximum is 10,000.
+| direction   | String| The sorting direction (by id). One of ASC or DESC (default is ASC). Case-insensitive.
+
+## Box.getCollections
+Retrieves the collections for the given user. Only the Favorites collection is supported.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+
+## Box.getCollectionItems
+Retrieves the files and/or folders contained within this collection. Collection item lists behave a lot like getting a folder’s items.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| collectionId| String| Collection Id.
+| fields      | String| Comma-separated list of fields to include in the response
+| offset      | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| limit       | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+## Box.addItemsToCollection
+Add items from a Collection
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| collectionId| String| Collection Id.
+| folderId    | String| FolderId
+
+## Box.deleteItemsFromCollection
+Remove items from a Collection
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| folderId   | String| FolderId
+
+## Box.getTask
+Fetches a specific task.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskId     | String| Task Id
+
+## Box.createTask
+Used to create a single task for single user on a single file.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileId     | String| The ID of the file this task is associated with
+| message    | String| An optional message to include with the task
+| dueAt      | String| When this task is due. Example: 2014-04-03T11:09:43-07:00
+
+## Box.updateTask
+Updates a specific task.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskId     | String| Task Id
+| message    | String| An optional message to include with the task
+| dueAt      | String| When this task is due. Example: 2014-04-03T11:09:43-07:00
+
+## Box.deleteTask
+Permanently deletes a specific task.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskId     | String| Task Id
+
+## Box.getTaskAssignment
+Fetches a specific task assignment.
+
+| Field           | Type  | Description
+|-----------------|-------|----------
+| accessToken     | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskAssignmentId| String| Task Assignment Id
+
+## Box.createTaskAssignment
+Used to assign a task to a single user. There can be multiple assignments on a given task.
+
+| Field        | Type  | Description
+|--------------|-------|----------
+| accessToken  | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskId       | String| Task Id
+| assignToId   | String| The ID of the user this assignment is for
+| assignToLogin| String| The login email address for the user this assignment is for
+
+## Box.updateTaskAssignment
+Used to update a task assignment
+
+| Field           | Type  | Description
+|-----------------|-------|----------
+| accessToken     | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskAssignmentId| String| Task Assignment Id
+| message         | String| A message from the assignee about this task
+| resolutionState | String| Can be completed, incomplete, approved, or rejected
+
+## Box.deleteTaskAssignment
+Deletes a specific task assignment.
+
+| Field           | Type  | Description
+|-----------------|-------|----------
+| accessToken     | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskAssignmentId| String| Task Assignment Id
+
+## Box.getTaskAssignments
+Retrieves all of the assignments for a given task.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| taskId     | String| Task Id
+
+## Box.getSingleRetentionPolicy
+Used to retrieve information about a retention policy.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId   | String| Policy Id
+
+## Box.createRetentionPolicy
+Used to create a new retention policy.
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyName       | String| Name of retention policy to be created
+| policyType       | String| finite or indefinite
+| retentionLength  | Number| The retention_length is the amount of time, in days, to apply the retention policy to the selected content in days. Do not specify for indefinite policies. Required for finite policies.
+| dispositionAction| Number| If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.
+
+## Box.updateRetentionPolicy
+Used to update a retention policy.
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId         | String| Policy Id
+| policyName       | String| Updated name of retention policy
+| dispositionAction| Number| If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.
+| status           | String| Used to retire a retention policy if status is set to retired. If not retiring a policy, do not include or set to null.
+
+## Box.getRetentionPolicies
+Retrieves all of the retention policies for the given enterprise.
+
+| Field          | Type  | Description
+|----------------|-------|----------
+| accessToken    | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyName     | String| A name to filter the retention policies by. A trailing partial match search is performed.
+| policyType     | String| A policy type to filter the retention policies by.
+| createdByUserId| String| A user ID to filter the retention policies by.
+
+## Box.getRetentionPolicyAssignment
+Used to retrieve information about a retention policy assignment.
+
+| Field                      | Type  | Description
+|----------------------------|-------|----------
+| accessToken                | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| retentionPolicyAssignmentId| String| Retention Policy Assignment Id
+
+## Box.createRetentionPolicyAssignment
+Used to retrieve information about a retention policy assignment.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId    | String| The ID of the retention policy to assign this content to.
+| assignToType| String| Can only be one of two attributes: enterprise or folder.
+| assignToId  | String| Id of the content to assign the retention policy to
+
+## Box.getSingleRetentionPolicyAssignments
+Returns a list of all retention policy assignments associated with a specified retention policy.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId   | String| The ID of the retention policy to assign this content to.
+| type       | String| The type of the retention policy assignment to retrieve. Can either be folder or enterprise.
+
+## Box.getSingleFileVersionRetention
+Used to retrieve information about a file version retention
+
+| Field                 | Type  | Description
+|-----------------------|-------|----------
+| accessToken           | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileVersionRetentionId| String| File version retention Id
+
+## Box.getFileVersionRetentions
+Retrieves all file version retentions for the given enterprise.
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| fileId           | String| A file ID to filter the file version retentions by
+| fileVersionId    | String| A file version ID to filter the file version retentions by
+| policyId         | String| A policy ID to filter the file version retentions by
+| dispositionAction| String| The disposition action of the retention policy. This action can be permanently_delete, which will cause the content retained by the policy to be permanently deleted, or remove_retention, which will lift the retention policy from the content, allowing it to be deleted by users, once the retention policy time period has passed.
+| dispositionBefore| String| See content times for formatting
+| dispositionAfter | String| See content times for formatting
+| limit            | Number| The maximum number of items to return. The default is 100.
+| marker           | String| Base 64 encoded string that represents where the paging should being. It should be left blank to begin paging.
+
+## Box.getSingleLegalHoldPolicy
+Get information about a legal hold policy.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId   | String| Policy Id
+
+## Box.createLegalHoldPolicy
+Create a new legal hold policy.
+
+| Field          | Type   | Description
+|----------------|--------|----------
+| accessToken    | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyName     | String | Name of Legal Hold Policy. Max characters 254.
+| description    | String | Description of Legal Hold Policy. Max characters 500.
+| filterStartedAt| String | Date filter applies to Custodian assignments only.
+| filterEndedAt  | String | Date filter applies to Custodian assignments only.
+| isOngoing      | Boolean| After initialization, Assignments under this Policy will continue applying to files based on events, indefinitely.
+
+## Box.updateLegalHoldPolicy
+Update a legal hold policy.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId    | String| Policy Id
+| policyName  | String| Name of Legal Hold Policy. Max characters 254.
+| description | String| Description of Legal Hold Policy. Max characters 500.
+| releaseNotes| String| Notes around why the policy was released. Optional property with a 500 character limit.
+
+## Box.deleteLegalHoldPolicy
+Sends a request to delete an existing legal hold policy. Note that this is an asynchronous process - the policy will not be fully deleted yet when the response comes back.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId   | String| Policy Id
+
+## Box.getLegalHoldPolicies
+Get all of the legal hold policies for the enterprise.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyName | String| Case insensitive prefix-match filter on Policy name.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+| marker     | String| Take from 'next_marker' column of a prior call to get the next page
+
+## Box.getSinglePolicyAssignment
+Get information about a policy assignment.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| assignmentId| String| Assignment Id
+
+## Box.createNewPolicyAssignment
+Create a new policy assignment, which applies the legal hold policy to the target of the assignment.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId    | String| ID of Policy to create Assignment for.
+| assignToId  | String| Possible values for id are file_version_id, file_id, folder_id, or user_id
+| assignToType| String| Possible values for type are 'file_version', 'file', 'folder', or 'user'
+
+## Box.deletePolicyAssignment
+Sends a request to delete an existing policy assignment. Note that this is an asynchronous process - the policy assignment will not be fully deleted yet when the response comes back.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| assignmentId| String| Assignment Id
+
+## Box.getPolicyAssignments
+Get all of the assignments for a legal hold policy.
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId    | String| ID of Policy to get Assignments for. Can also specify a part of a URL
+| assignToType| String| Filter assignments of this type only. Can be file_version, file, folder, or user.
+| assignToId  | String| Filter assignments to this ID only. Note that this will only show assignments applied directly to this entity.
+
+## Box.getFileVersionSingleLegalHold
+Get information about a file version legal hold.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| id         | String| ID of File Version Legal Hold
+
+## Box.getFileVersionLegalHolds
+Get all of the non-deleted legal holds for a single legal hold policy.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| policyId   | String| ID of Legal Hold Policy to get File Version Legal Holds for
+
+## Box.getWebhooks
+Get all webhooks in an enterprise.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| marker     | String| The position marker at which to begin the response. See marker-based paging for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 200.
+
+## Box.getSingleWebhook
+Get information about a webhook.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webhookId  | String| Webhook Id
+
+## Box.createWebhook
+Create a new webhook.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| targetType | String| Target type. file or folder
+| targetId   | String| Target Id
+| triggers   | String| Event types that trigger notifications for the target. Example: FILE.UPLOADED,FILE.DOWNLOADED
+| address    | String| The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.
+
+## Box.updateWebhook
+Update a webhook.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webhookId  | String| Webhook Id
+| targetType | String| Target type
+| targetId   | String| Target Id
+| triggers   | String| Event types that trigger notifications for the target. Example: 'FILE.UPLOADED','FILE.DOWNLOADED'
+| address    | String| The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.
+
+## Box.deleteWebhook
+Delete a webhook.
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
+| webhookId  | String| Webhook Id
 

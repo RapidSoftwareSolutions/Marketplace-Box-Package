@@ -1,27 +1,40 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/updateLegalHoldPolicy', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','policyId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
         $post_data = $validateRes;
     }
-    $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $accessToken = $post_data['args']['accessToken'];
+    $policyId = $post_data['args']['policyId'];
+
+    $data = [];
+    if(!empty($post_data['args']['description'])){
+        $data['description'] = $post_data['args']['description'];
+    }
+    if(!empty($post_data['args']['releaseNotes'])){
+        $data['release_notes'] = $post_data['args']['releaseNotes'];
+    }
+    if(!empty($post_data['args']['policyName'])){
+        $data['policy_name'] = $post_data['args']['policyName'];
+    }
+
+    $query_str = $settings['default_url'] . "legal_hold_policies/$policyId";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->put($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

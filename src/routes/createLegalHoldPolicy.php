@@ -1,27 +1,42 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/createLegalHoldPolicy', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','policyName']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
         $post_data = $validateRes;
     }
-    $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $accessToken = $post_data['args']['accessToken'];
+    $data['policy_name'] = $post_data['args']['policyName'];
+
+    if(!empty($post_data['args']['description'])){
+        $data['description'] = $post_data['args']['description'];
+    }
+    if(!empty($post_data['args']['filterStartedAt'])){
+        $data['filter_started_at'] = $post_data['args']['filterStartedAt'];
+    }
+    if(!empty($post_data['args']['filterEndedAt'])){
+        $data['filter_ended_at'] = $post_data['args']['filterEndedAt'];
+    }
+    if(isset($post_data['args']['isOngoing'])){
+        $data['is_ongoing'] = $post_data['args']['isOngoing'];
+    }
+
+    $query_str = $settings['default_url'] . "legal_hold_policies";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->post($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();
 

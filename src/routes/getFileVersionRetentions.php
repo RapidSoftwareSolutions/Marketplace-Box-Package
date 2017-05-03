@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/Box/deleteCollaboration', function ($request, $response) {
+$app->post('/api/Box/getFileVersionRetentions', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','deleteCollaboration']);
+    $validateRes = $checkRequest->validate($request, ['accessToken']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,16 +12,42 @@ $app->post('/api/Box/deleteCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $collabId = $post_data['args']['collabId'];
 
-    $query_str = $settings['default_url'] . "collaborations/$collabId";
+    $query = [];
+    if(!empty($post_data['args']['fileId'])){
+        $query['file_id'] = $post_data['args']['fileId'];
+    }
+    if(!empty($post_data['args']['fileVersionId'])){
+        $query['file_version_id'] = $post_data['args']['fileVersionId'];
+    }
+    if(!empty($post_data['args']['policyId'])){
+        $query['policy_id'] = $post_data['args']['policyId'];
+    }
+    if(!empty($post_data['args']['dispositionAction'])){
+        $query['disposition_action'] = $post_data['args']['dispositionAction'];
+    }
+    if(!empty($post_data['args']['dispositionBefore'])){
+        $query['disposition_before'] = $post_data['args']['dispositionBefore'];
+    }
+    if(!empty($post_data['args']['dispositionAfter'])){
+        $query['disposition_after'] = $post_data['args']['dispositionAfter'];
+    }
+    if(!empty($post_data['args']['limit'])){
+        $query['limit'] = $post_data['args']['limit'];
+    }
+    if(!empty($post_data['args']['marker'])){
+        $query['marker'] = $post_data['args']['marker'];
+    }
+
+    $query_str = $settings['default_url'] . "file_version_retentions";
     $client = $this->httpClient;
 
     try {
-        $resp = $client->delete($query_str, [
+        $resp = $client->get($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
-            ]
+            ],
+            'query' => $query
         ]);
         $responseBody = $resp->getBody()->getContents();
 

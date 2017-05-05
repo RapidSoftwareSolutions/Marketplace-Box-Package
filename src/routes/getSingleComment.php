@@ -13,7 +13,7 @@ $app->post('/api/Box/getSingleComment', function ($request, $response) {
     }
     $accessToken = $post_data['args']['accessToken'];
     $commentId = $post_data['args']['commentId'];
-    $query_str = $settings['users_url'] . "comments/$commentId";
+    $query_str = $settings['default_url'] . "comments/$commentId";
     $client = $this->httpClient;
     try {
 

@@ -4899,7 +4899,7 @@
         {
           "name": "triggers",
           "type": "String",
-          "info": "Event types that trigger notifications for the target. Example: 'FILE.UPLOADED','FILE.DOWNLOADED'",
+          "info": "Event types that trigger notifications for the target. Example: FILE.UPLOADED,FILE.DOWNLOADED",
           "required": false
         },
         {

@@ -732,10 +732,10 @@ Add a member to a group.
 | userId           | String | The ID of the user to add to the group
 | groupId          | String | The ID of the group to add the user into.
 | role             | String | The role of the user in the group. Default is “member” option for “admin”
-| canRunReports    | Boolean| 
-| canInstantLogin  | Boolean| 
-| canCreateAccounts| Boolean| 
-| canEditAccounts  | Boolean| 
+| canRunReports    | Boolean| Can run reports
+| canInstantLogin  | Boolean| Can instant login
+| canCreateAccounts| Boolean| Can create accounts
+| canEditAccounts  | Boolean| Can edit accounts
 
 ## Box.updateMembership
 Fetches a specific group membership entry.
@@ -745,10 +745,10 @@ Fetches a specific group membership entry.
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupMembershipId| String | Membership Id
 | role             | String | The role of the user in the group. Default is “member” option for “admin”
-| canRunReports    | Boolean| 
-| canInstantLogin  | Boolean| 
-| canCreateAccounts| Boolean| 
-| canEditAccounts  | Boolean| 
+| canRunReports    | Boolean| Can run reports
+| canInstantLogin  | Boolean| Can instant login
+| canCreateAccounts| Boolean| Can create accounts
+| canEditAccounts  | Boolean| Can edit accounts
 
 ## Box.deleteMembership
 Delete a group membership.
@@ -1135,7 +1135,7 @@ Used to retrieve information about a retention policy.
 | policyId   | String| Policy Id
 
 ## Box.createRetentionPolicy
-Used to create a new retention policy.
+Used to create a new retention policy. Only Business Plus or Enterprise account.
 
 | Field            | Type  | Description
 |------------------|-------|----------
@@ -1146,7 +1146,7 @@ Used to create a new retention policy.
 | dispositionAction| Number| If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.
 
 ## Box.updateRetentionPolicy
-Used to update a retention policy.
+Used to update a retention policy. Only Business Plus or Enterprise account.
 
 | Field            | Type  | Description
 |------------------|-------|----------
@@ -1157,7 +1157,7 @@ Used to update a retention policy.
 | status           | String| Used to retire a retention policy if status is set to retired. If not retiring a policy, do not include or set to null.
 
 ## Box.getRetentionPolicies
-Retrieves all of the retention policies for the given enterprise.
+Retrieves all of the retention policies for the given enterprise. Only Business Plus or Enterprise account.
 
 | Field          | Type  | Description
 |----------------|-------|----------
@@ -1167,7 +1167,7 @@ Retrieves all of the retention policies for the given enterprise.
 | createdByUserId| String| A user ID to filter the retention policies by.
 
 ## Box.getRetentionPolicyAssignment
-Used to retrieve information about a retention policy assignment.
+Used to retrieve information about a retention policy assignment. Only Business Plus or Enterprise account.
 
 | Field                      | Type  | Description
 |----------------------------|-------|----------
@@ -1175,7 +1175,7 @@ Used to retrieve information about a retention policy assignment.
 | retentionPolicyAssignmentId| String| Retention Policy Assignment Id
 
 ## Box.createRetentionPolicyAssignment
-Used to retrieve information about a retention policy assignment.
+Used to retrieve information about a retention policy assignment. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1185,7 +1185,7 @@ Used to retrieve information about a retention policy assignment.
 | assignToId  | String| Id of the content to assign the retention policy to
 
 ## Box.getSingleRetentionPolicyAssignments
-Returns a list of all retention policy assignments associated with a specified retention policy.
+Returns a list of all retention policy assignments associated with a specified retention policy. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1194,7 +1194,7 @@ Returns a list of all retention policy assignments associated with a specified r
 | type       | String| The type of the retention policy assignment to retrieve. Can either be folder or enterprise.
 
 ## Box.getSingleFileVersionRetention
-Used to retrieve information about a file version retention
+Used to retrieve information about a file version retention. Only Business Plus or Enterprise account.
 
 | Field                 | Type  | Description
 |-----------------------|-------|----------
@@ -1202,7 +1202,7 @@ Used to retrieve information about a file version retention
 | fileVersionRetentionId| String| File version retention Id
 
 ## Box.getFileVersionRetentions
-Retrieves all file version retentions for the given enterprise.
+Retrieves all file version retentions for the given enterprise. Only Business Plus or Enterprise account.
 
 | Field            | Type  | Description
 |------------------|-------|----------
@@ -1217,7 +1217,7 @@ Retrieves all file version retentions for the given enterprise.
 | marker           | String| Base 64 encoded string that represents where the paging should being. It should be left blank to begin paging.
 
 ## Box.getSingleLegalHoldPolicy
-Get information about a legal hold policy.
+Get information about a legal hold policy. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1225,7 +1225,7 @@ Get information about a legal hold policy.
 | policyId   | String| Policy Id
 
 ## Box.createLegalHoldPolicy
-Create a new legal hold policy.
+Create a new legal hold policy. Only Business Plus or Enterprise account.
 
 | Field          | Type   | Description
 |----------------|--------|----------
@@ -1237,7 +1237,7 @@ Create a new legal hold policy.
 | isOngoing      | Boolean| After initialization, Assignments under this Policy will continue applying to files based on events, indefinitely.
 
 ## Box.updateLegalHoldPolicy
-Update a legal hold policy.
+Update a legal hold policy. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1248,7 +1248,7 @@ Update a legal hold policy.
 | releaseNotes| String| Notes around why the policy was released. Optional property with a 500 character limit.
 
 ## Box.deleteLegalHoldPolicy
-Sends a request to delete an existing legal hold policy. Note that this is an asynchronous process - the policy will not be fully deleted yet when the response comes back.
+Sends a request to delete an existing legal hold policy. Note that this is an asynchronous process - the policy will not be fully deleted yet when the response comes back. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1256,7 +1256,7 @@ Sends a request to delete an existing legal hold policy. Note that this is an as
 | policyId   | String| Policy Id
 
 ## Box.getLegalHoldPolicies
-Get all of the legal hold policies for the enterprise.
+Get all of the legal hold policies for the enterprise. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1266,7 +1266,7 @@ Get all of the legal hold policies for the enterprise.
 | marker     | String| Take from 'next_marker' column of a prior call to get the next page
 
 ## Box.getSinglePolicyAssignment
-Get information about a policy assignment.
+Get information about a policy assignment. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1274,7 +1274,7 @@ Get information about a policy assignment.
 | assignmentId| String| Assignment Id
 
 ## Box.createNewPolicyAssignment
-Create a new policy assignment, which applies the legal hold policy to the target of the assignment.
+Create a new policy assignment, which applies the legal hold policy to the target of the assignment. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1284,7 +1284,7 @@ Create a new policy assignment, which applies the legal hold policy to the targe
 | assignToType| String| Possible values for type are 'file_version', 'file', 'folder', or 'user'
 
 ## Box.deletePolicyAssignment
-Sends a request to delete an existing policy assignment. Note that this is an asynchronous process - the policy assignment will not be fully deleted yet when the response comes back.
+Sends a request to delete an existing policy assignment. Note that this is an asynchronous process - the policy assignment will not be fully deleted yet when the response comes back. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1292,7 +1292,7 @@ Sends a request to delete an existing policy assignment. Note that this is an as
 | assignmentId| String| Assignment Id
 
 ## Box.getPolicyAssignments
-Get all of the assignments for a legal hold policy.
+Get all of the assignments for a legal hold policy. Only Business Plus or Enterprise account.
 
 | Field       | Type  | Description
 |-------------|-------|----------
@@ -1302,7 +1302,7 @@ Get all of the assignments for a legal hold policy.
 | assignToId  | String| Filter assignments to this ID only. Note that this will only show assignments applied directly to this entity.
 
 ## Box.getFileVersionSingleLegalHold
-Get information about a file version legal hold.
+Get information about a file version legal hold. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1310,7 +1310,7 @@ Get information about a file version legal hold.
 | id         | String| ID of File Version Legal Hold
 
 ## Box.getFileVersionLegalHolds
-Get all of the non-deleted legal holds for a single legal hold policy.
+Get all of the non-deleted legal holds for a single legal hold policy. Only Business Plus or Enterprise account.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1318,7 +1318,7 @@ Get all of the non-deleted legal holds for a single legal hold policy.
 | policyId   | String| ID of Legal Hold Policy to get File Version Legal Holds for
 
 ## Box.getWebhooks
-Get all webhooks in an enterprise.
+Get all webhooks in an enterprise. 
 
 | Field      | Type  | Description
 |------------|-------|----------

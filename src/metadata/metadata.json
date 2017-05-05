@@ -2752,25 +2752,25 @@
         {
           "name": "canRunReports",
           "type": "Boolean",
-          "info": "",
+          "info": "Can run reports",
           "required": false
         },
         {
           "name": "canInstantLogin",
           "type": "Boolean",
-          "info": "",
+          "info": "Can instant login",
           "required": false
         },
         {
           "name": "canCreateAccounts",
           "type": "Boolean",
-          "info": "",
+          "info": "Can create accounts",
           "required": false
         },
         {
           "name": "canEditAccounts",
           "type": "Boolean",
-          "info": "",
+          "info": "Can edit accounts",
           "required": false
         }
       ],
@@ -2806,25 +2806,25 @@
         {
           "name": "canRunReports",
           "type": "Boolean",
-          "info": "",
+          "info": "Can run reports",
           "required": false
         },
         {
           "name": "canInstantLogin",
           "type": "Boolean",
-          "info": "",
+          "info": "Can instant login",
           "required": false
         },
         {
           "name": "canCreateAccounts",
           "type": "Boolean",
-          "info": "",
+          "info": "Can create accounts",
           "required": false
         },
         {
           "name": "canEditAccounts",
           "type": "Boolean",
-          "info": "",
+          "info": "Can edit accounts",
           "required": false
         }
       ],

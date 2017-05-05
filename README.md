@@ -731,7 +731,7 @@ Add a member to a group.
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userId           | String | The ID of the user to add to the group
 | groupId          | String | The ID of the group to add the user into.
-| role             | String | The role of the user in the group. Default is “member” option for “admin”
+| role             | String | The role of the user in the group. Default is ```member``` option for ```admin```
 | canRunReports    | Boolean| Can run reports
 | canInstantLogin  | Boolean| Can instant login
 | canCreateAccounts| Boolean| Can create accounts
@@ -744,7 +744,7 @@ Fetches a specific group membership entry.
 |------------------|--------|----------
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupMembershipId| String | Membership Id
-| role             | String | The role of the user in the group. Default is “member” option for “admin”
+| role             | String | The role of the user in the group. Default is ```member``` option for ```admin```
 | canRunReports    | Boolean| Can run reports
 | canInstantLogin  | Boolean| Can instant login
 | canCreateAccounts| Boolean| Can create accounts
@@ -810,7 +810,7 @@ Create a new collaboration that grants a user or group access to a file or folde
 | accessibleByType | String | user or group
 | accessibleById   | String | The ID of the user or group that is granted access
 | accessibleByLogin| String | The email address of the person to grant access to. Use instead of id to invite new users
-| role             | String | The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner
+| role             | String | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
 | canViewPath      | Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
 
 ## Box.updateCollaboration
@@ -821,7 +821,7 @@ Update a collaboration.
 | accessToken| String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | collabId   | String | Collaboration Id
 | fields     | String | The email address to add to the account as an alias
-| role       | String | The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner
+| role       | String | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
 | status     | String | The status of the collaboration invitation. Can be accepted, pending, or rejected.
 | canViewPath| Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
 
@@ -860,7 +860,7 @@ Create a new comment.
 | itemType     | String| The type of the item that this comment will be placed on. Can be file or comment
 | itemId       | String| The ID of the item that this comment will be placed on
 | message      | String| The text of the comment
-| taggedMessage| String| The text of the comment, including @[userid:Username] somewhere in the message to mention the user, which will send them a direct email, letting them know they’ve been mentioned in a comment
+| taggedMessage| String| The text of the comment, including ```@[userid:Username]``` somewhere in the message to mention the user, which will send them a direct email, letting them know they’ve been mentioned in a comment
 
 ## Box.updateComment
 Update a comment.
@@ -893,7 +893,7 @@ Create a new web link.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| url        | String| The URL the web link points to. Must start with "http://" or "https://".
+| url        | String| The URL the web link points to. Must start with ```http://``` or ```https://```.
 | parentId   | String| The ID of the parent folder where you're creating the web link
 | name       | String| Name of the web link. Defaults to the URL if not set.
 | description| String| Description of the web link
@@ -905,7 +905,7 @@ Update a web link.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | webLinkId  | String| The ID of the web link
-| url        | String| The UR the web link points to. Must start with "http://" or "https://".
+| url        | String| The UR the web link points to. Must start with ```http://``` or ```https://```.
 | parentId   | String| The ID of the parent folder where you're creating the web link
 | name       | String| Name of the web link. Defaults to the URL if not set.
 | description| String| Description of the web link
@@ -1009,7 +1009,7 @@ Gets all the device pins within a given enterprise. Must be an enterprise admin 
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | enterpriseId| String| Enterprise ID
 | limit       | String| The maximum number of items to return. The default is 100 and the maximum is 10,000.
-| direction   | String| The sorting direction (by id). One of ASC or DESC (default is ASC). Case-insensitive.
+| direction   | String| The sorting direction (by id). One of ```ASC``` or ```DESC``` (default is ASC). Case-insensitive.
 
 ## Box.getCollections
 Retrieves the collections for the given user. Only the Favorites collection is supported.
@@ -1062,7 +1062,7 @@ Used to create a single task for single user on a single file.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| The ID of the file this task is associated with
 | message    | String| An optional message to include with the task
-| dueAt      | String| When this task is due. Example: 2014-04-03T11:09:43-07:00
+| dueAt      | String| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
 
 ## Box.updateTask
 Updates a specific task.
@@ -1072,7 +1072,7 @@ Updates a specific task.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | taskId     | String| Task Id
 | message    | String| An optional message to include with the task
-| dueAt      | String| When this task is due. Example: 2014-04-03T11:09:43-07:00
+| dueAt      | String| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
 
 ## Box.deleteTask
 Permanently deletes a specific task.
@@ -1108,7 +1108,7 @@ Used to update a task assignment
 | accessToken     | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | taskAssignmentId| String| Task Assignment Id
 | message         | String| A message from the assignee about this task
-| resolutionState | String| Can be completed, incomplete, approved, or rejected
+| resolutionState | String| Can be ```completed```, ```incomplete```, ```approved```, or ```rejected```
 
 ## Box.deleteTaskAssignment
 Deletes a specific task assignment.
@@ -1141,9 +1141,9 @@ Used to create a new retention policy. Only Business Plus or Enterprise account.
 |------------------|-------|----------
 | accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyName       | String| Name of retention policy to be created
-| policyType       | String| finite or indefinite
+| policyType       | String| ```finite``` or ```indefinite```
 | retentionLength  | Number| The retention_length is the amount of time, in days, to apply the retention policy to the selected content in days. Do not specify for indefinite policies. Required for finite policies.
-| dispositionAction| Number| If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.
+| dispositionAction| Number| If creating a finite policy, the disposition action can be ```permanently_delete``` or ```remove_retention```. For indefinite policies, disposition action must be ```remove_retention```.
 
 ## Box.updateRetentionPolicy
 Used to update a retention policy. Only Business Plus or Enterprise account.
@@ -1281,7 +1281,7 @@ Create a new policy assignment, which applies the legal hold policy to the targe
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyId    | String| ID of Policy to create Assignment for.
 | assignToId  | String| Possible values for id are file_version_id, file_id, folder_id, or user_id
-| assignToType| String| Possible values for type are 'file_version', 'file', 'folder', or 'user'
+| assignToType| String| Possible values for type are ```file_version```, ```file```, ```folder```, or ```user```
 
 ## Box.deletePolicyAssignment
 Sends a request to delete an existing policy assignment. Note that this is an asynchronous process - the policy assignment will not be fully deleted yet when the response comes back. Only Business Plus or Enterprise account.
@@ -1298,7 +1298,7 @@ Get all of the assignments for a legal hold policy. Only Business Plus or Enterp
 |-------------|-------|----------
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyId    | String| ID of Policy to get Assignments for. Can also specify a part of a URL
-| assignToType| String| Filter assignments of this type only. Can be file_version, file, folder, or user.
+| assignToType| String| Filter assignments of this type only. Can be ```file_version```, ```file```, ```folder```, or ```user```.
 | assignToId  | String| Filter assignments to this ID only. Note that this will only show assignments applied directly to this entity.
 
 ## Box.getFileVersionSingleLegalHold
@@ -1318,7 +1318,7 @@ Get all of the non-deleted legal holds for a single legal hold policy. Only Busi
 | policyId   | String| ID of Legal Hold Policy to get File Version Legal Holds for
 
 ## Box.getWebhooks
-Get all webhooks in an enterprise. 
+Get all webhooks in an enterprise.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -1342,7 +1342,7 @@ Create a new webhook.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | targetType | String| Target type. file or folder
 | targetId   | String| Target Id
-| triggers   | String| Event types that trigger notifications for the target. Example: FILE.UPLOADED,FILE.DOWNLOADED
+| triggers   | String| Event types that trigger notifications for the target. Example: ```FILE.UPLOADED```,```FILE.DOWNLOADED```
 | address    | String| The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.
 
 ## Box.updateWebhook
@@ -1354,7 +1354,7 @@ Update a webhook.
 | webhookId  | String| Webhook Id
 | targetType | String| Target type
 | targetId   | String| Target Id
-| triggers   | String| Event types that trigger notifications for the target. Example: 'FILE.UPLOADED','FILE.DOWNLOADED'
+| triggers   | String| Event types that trigger notifications for the target. Example:```FILE.UPLOADED```,```FILE.DOWNLOADED```
 | address    | String| The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.
 
 ## Box.deleteWebhook

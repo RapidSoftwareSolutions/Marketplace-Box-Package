@@ -1315,7 +1315,7 @@ Get all of the non-deleted legal holds for a single legal hold policy. Only Busi
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| policyId   | String| ID of Legal Hold Policy to get File Version Legal Holds for
+| policyId   | String| Policy Id
 
 ## Box.getWebhooks
 Get all webhooks in an enterprise.

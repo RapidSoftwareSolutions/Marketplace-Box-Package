@@ -1280,7 +1280,7 @@ Create a new policy assignment, which applies the legal hold policy to the targe
 |-------------|-------|----------
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyId    | String| ID of Policy to create Assignment for.
-| assignToId  | String| Possible values for id are file_version_id, file_id, folder_id, or user_id
+| assignToId  | String| Possible values for id are ```file_version_id```, ```file_id```, ```folder_id```, or ```user_id```
 | assignToType| String| Possible values for type are ```file_version```, ```file```, ```folder```, or ```user```
 
 ## Box.deletePolicyAssignment

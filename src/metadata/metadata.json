@@ -4940,6 +4940,19 @@
         "name": "success",
         "info": "Success"
       }]
+    },
+    {
+      "name": "webhookCommand",
+      "description": "test webhook",
+      "args": [
+      ],
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
     }
   ]
 }

@@ -16,10 +16,10 @@
     "credentials": [
       "clientId",
       "clientSecret"
-
     ]
   },
-  "blocks": [{
+  "blocks": [
+    {
     "name": "getAccessToken",
     "description": "Returns access tokens. An access token is a data string that enables Box to verify that a request belongs to an authorized session. In the normal order of operations you will begin by requesting authentication from the Box authorize endpoint and Box will send you an authorization code. You will then send the authorization code to the token endpoint in a request for an access token. You can then use the returned access token to make Box API calls.",
     "args": [{

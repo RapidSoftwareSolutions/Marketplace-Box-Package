@@ -133,7 +133,8 @@ $routes = [
     'getSingleWebhook',
     'createWebhook',
     'updateWebhook',
-    'deleteWebhook'
+    'deleteWebhook',
+    'webhookCommand'
 ];
 foreach($routes as $file) {
     require __DIR__ . '/../src/routes/'.$file.'.php';

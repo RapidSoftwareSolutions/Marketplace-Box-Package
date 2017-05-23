@@ -4940,19 +4940,21 @@
         "name": "success",
         "info": "Success"
       }]
-    },
+    }
+  ],
+  "events": [
     {
       "name": "webhookCommand",
-      "description": "test webhook",
-      "args": [
+      "description": "webhook test command",
+      "payload": {
+      },
+      "steps": [
+        "Navigate to...",
+        "Set webhook to __WEBHOOK_URL__"
       ],
-      "callbacks": [{
-        "name": "error",
-        "info": "Error"
-      }, {
-        "name": "success",
-        "info": "Success"
-      }]
+      "args": [
+
+      ]
     }
   ]
 }

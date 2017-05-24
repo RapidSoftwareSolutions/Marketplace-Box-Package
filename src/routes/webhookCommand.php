@@ -1,7 +1,6 @@
 <?php
 
 $app->post('/api/Box/webhookCommand', function ($request, $response) {
-    file_get_contents("http://4a1c0f62.ngrok.io/");
+    $result = ["text"=>"done"];
+    return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 });
-
-//https://webhooks.rapidapi.com/api/message/{PackageName}/{eventName}/{Project}/{ProjectKey}

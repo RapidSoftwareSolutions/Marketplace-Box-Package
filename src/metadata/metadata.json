@@ -4953,7 +4953,12 @@
         "Set webhook to __WEBHOOK_URL__"
       ],
       "args": [
-
+        {
+          "name": "command",
+          "type": "string",
+          "info": "Slash command",
+          "required": false
+        }
       ]
     }
   ]

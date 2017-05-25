@@ -4949,7 +4949,7 @@
       "payload": {
       },
       "steps": [
-        "Navigate to...",
+        "Navigate to box.com",
         "Set webhook to __WEBHOOK_URL__"
       ],
       "args": [

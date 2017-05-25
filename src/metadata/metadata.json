@@ -292,7 +292,8 @@
         },
         {
           "name": "sharedLinkAccess",
-          "type": "String",
+          "type": "Select",
+          "options":["open","company","collaborators"],
           "info": "The level of access. Can be open ('People with the link'), company ('People in your company'), or collaborators ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.",
           "required": false
         },
@@ -900,7 +901,8 @@
         },
         {
           "name": "sharedLinkAccess",
-          "type": "String",
+          "type": "Select",
+          "options":["open","company","collaborators"],
           "info": "The level of access. Can be open ('People with the link'), company ('People in your company'), or collaborators ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.",
           "required": false
         },
@@ -1068,7 +1070,8 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders","web_links"],
           "info": "files or folders",
           "required": true
         }
@@ -1098,13 +1101,15 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders","web_links"],
           "info": "files or folders",
           "required": true
         },
         {
           "name": "sharedLinkAccess",
-          "type": "String",
+          "type": "Select",
+          "options":["open","company","collaborators"],
           "info": "The level of access. Can be open ('People with the link'), company ('People in your company'), or collaborators ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.",
           "required": true
         },
@@ -1152,13 +1157,15 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders"],
           "info": "files or folders",
           "required": false
         },
         {
           "name": "sharedLinkAccess",
-          "type": "String",
+          "type": "Select",
+          "options":["open","company","collaborators"],
           "info": "The level of access. Can be open ('People with the link'), company ('People in your company'), or collaborators ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.",
           "required": false
         },
@@ -1272,7 +1279,8 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders","web_links"],
           "info": "files, folders or web_links",
           "required": true
         },
@@ -1308,7 +1316,8 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders","web_links"],
           "info": "files, folders or web_links",
           "required": true
         },
@@ -1356,7 +1365,8 @@
         },
         {
           "name": "endpoint",
-          "type": "String",
+          "type": "Select",
+          "options": ["files","folders","web_links"],
           "info": "files, folders or web_links",
           "required": true
         }
@@ -1386,7 +1396,8 @@
         },
         {
           "name": "scope",
-          "type": "String",
+          "type": "Select",
+          "options": ["user_content","enterprise_content"],
           "info": "The scope on which you want search. Can be user_content for a search limited to the current user or enterprise_content to search an entire enterprise.",
           "required": false
         },
@@ -1538,7 +1549,8 @@
         },
         {
           "name": "fieldType",
-          "type": "String",
+          "type": "Select",
+          "options": ["string","enum","float","date"],
           "info": "The data type of the field's value. Templates support four attributes types: string, enum, float, and date (RFC 3339).",
           "required": true
         },
@@ -2090,7 +2102,8 @@
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options":["active","inactive","cannot_delete_edit","cannot_delete_edit_upload"],
           "info": "active, inactive, cannot_delete_edit, or cannot_delete_edit_upload",
           "required": false
         }
@@ -2175,7 +2188,8 @@
 
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options":["active","inactive","cannot_delete_edit","cannot_delete_edit_upload"],
           "info": "active, inactive, cannot_delete_edit, or cannot_delete_edit_upload",
           "required": false
         }
@@ -2265,7 +2279,8 @@
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options":["active","inactive","cannot_delete_edit","cannot_delete_edit_upload"],
           "info": "active, inactive, cannot_delete_edit, or cannot_delete_edit_upload",
           "required": false
         }
@@ -3051,7 +3066,8 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options":["viewer","previewer","uploader","previewer uploader","viewer uploader","co-owner","owner"],
           "info": "The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner",
           "required": true
         },
@@ -3093,13 +3109,15 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options":["viewer","previewer","uploader","previewer uploader","viewer uploader","co-owner","owner"],
           "info": "The level of access granted. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner",
           "required": true
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options":["accepted","pending","rejected"],
           "info": "The status of the collaboration invitation. Can be accepted, pending, or rejected.",
           "required": false
         },
@@ -3717,7 +3735,8 @@
         },
         {
           "name": "direction",
-          "type": "String",
+          "type": "Select",
+          "options":["ASC","DESC"],
           "info": "The sorting direction (by id). One of ASC or DESC (default is ASC). Case-insensitive.",
           "required": false
         }
@@ -3890,7 +3909,7 @@
         },
         {
           "name": "dueAt",
-          "type": "String",
+          "type": "DatePicker",
           "info": "When this task is due. Example: 2014-04-03T11:09:43-07:00",
           "required": false
         }
@@ -3926,7 +3945,7 @@
         },
         {
           "name": "dueAt",
-          "type": "String",
+          "type": "DatePicker",
           "info": "When this task is due. Example: 2014-04-03T11:09:43-07:00",
           "required": false
         }
@@ -4046,7 +4065,8 @@
         },
         {
           "name": "resolutionState",
-          "type": "String",
+          "type": "Select",
+          "options": ["completed","incomplete","approved","rejected"],
           "info": "Can be completed, incomplete, approved, or rejected",
           "required": false
         }
@@ -4148,7 +4168,8 @@
         },
         {
           "name": "policyType",
-          "type": "String",
+          "type": "Select",
+          "options": ["finite","indefinite"],
           "info": "finite or indefinite",
           "required": true
         },
@@ -4160,7 +4181,8 @@
         },
         {
           "name": "dispositionAction",
-          "type": "Number",
+          "type": "Select",
+          "options": ["permanently_delete","remove_retention"],
           "info": "If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.",
           "required": true
         }
@@ -4196,7 +4218,8 @@
         },
         {
           "name": "dispositionAction",
-          "type": "Number",
+          "type": "Select",
+          "options": ["permanently_delete","remove_retention"],
           "info": "If creating a finite policy, the disposition action can be permanently_delete or remove_retention. For indefinite policies, disposition action must be remove_retention.",
           "required": false
         },
@@ -4232,7 +4255,8 @@
         },
         {
           "name": "policyType",
-          "type": "String",
+          "type": "Select",
+          "options": ["finite","indefinite"],
           "info": "A policy type to filter the retention policies by.",
           "required": false
         },
@@ -4646,13 +4670,15 @@
         },
         {
           "name": "assignToId",
-          "type": "String",
+          "type": "Select",
+          "options":["file_version_id","file_id","folder_id","user_id"],
           "info": "Possible values for id are file_version_id, file_id, folder_id, or user_id",
           "required": true
         },
         {
           "name": "assignToType",
-          "type": "String",
+          "type": "Select",
+          "options": ["file_version","file","folder","user"],
           "info": "Possible values for type are 'file_version', 'file', 'folder', or 'user'",
           "required": true
         }

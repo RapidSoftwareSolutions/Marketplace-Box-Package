@@ -20,7 +20,8 @@ $app->post('/api/Box/createTask', function ($request, $response) {
         $data['message'] = $post_data['args']['message'];
     }
     if(!empty($post_data['args']['dueAt'])){
-        $data['due_at'] = $post_data['args']['dueAt'];
+        $dueAt = strtotime($post_data['args']['dueAt']);
+        $data['due_at'] = date("c", $dueAt);
     }
 
     $query_str = $settings['default_url'] . "tasks";

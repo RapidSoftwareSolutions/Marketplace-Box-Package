@@ -311,7 +311,8 @@
         },
         {
           "name": "sharedLinkPermissionsCanDownload",
-          "type": "String",
+          "type": "Select",
+          "options": ["open","company"],
           "info": "Whether the shared link allows downloads. Can only be set with access levels open and company (not collaborators).",
           "required": false
         },
@@ -1451,7 +1452,8 @@
         },
         {
           "name": "trashContent",
-          "type": "String",
+          "type": "Select",
+          "options": ["trashed_only","non_trashed_only"],
           "info": "Controls whether to search in the trash. The value can be trashed_only or non_trashed_only. Searches without this parameter default to searching non_trashed_only",
           "required": false
         },
@@ -2054,7 +2056,8 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options": ["member","admin"],
           "info": "The user’s enterprise role. Can be coadmin or user",
           "required": false
         },
@@ -2231,7 +2234,8 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options": ["coadmin","user"],
           "info": "The user’s enterprise role. Can be coadmin or user",
           "required": false
         },
@@ -2760,7 +2764,8 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options": ["member","admin"],
           "info": "The role of the user in the group. Default is “member” option for “admin”",
           "required": false
         },
@@ -2814,7 +2819,8 @@
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options": ["member","admin"],
           "info": "The role of the user in the group. Default is “member” option for “admin”",
           "required": false
         },
@@ -4316,7 +4322,8 @@
         },
         {
           "name": "assignToType",
-          "type": "String",
+          "type": "Select",
+          "options": ["enterprise","user"],
           "info": "Can only be one of two attributes: enterprise or folder.",
           "required": true
         },
@@ -4732,7 +4739,8 @@
         },
         {
           "name": "assignToType",
-          "type": "String",
+          "type": "Select",
+          "options": ["file_version","file","folder","user"],
           "info": "Filter assignments of this type only. Can be file_version, file, folder, or user.",
           "required": false
         },

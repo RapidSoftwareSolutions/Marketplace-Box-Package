@@ -19,6 +19,7 @@ $app->post('/api/Box/updateTask', function ($request, $response) {
         $dueAt = strtotime($post_data['args']['dueAt']);
         $data['due_at'] = date("c", $dueAt);
     }
+    
     $query_str = $settings['default_url'] . "tasks/$taskId";
     $client = $this->httpClient;
 

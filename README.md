@@ -9,6 +9,17 @@ Connect to the Box Cloud Storage API to manage, share, and upload files to the c
 1. Get authorization code for this [instruction](https://developer.box.com/reference#authorize).
 2. Make request to getAccessToken method.
 
+## Custom datatypes:
+ |Datatype|Description|Example
+ |--------|-----------|----------
+ |Datepicker|String which includes date and time|```2016-05-28 00:00:00```
+ |Map|String which includes latitude and longitude coma separated|```50.37, 26.56```
+ |List|Simple array|```["123", "sample"]```
+ |Select|String with predefined values|```sample```
+ |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+
+
+
 
 ## Box.getAccessToken
 Returns access tokens. An access token is a data string that enables Box to verify that a request belongs to an authorized session. In the normal order of operations you will begin by requesting authentication from the Box authorize endpoint and Box will send you an authorization code. You will then send the authorization code to the token endpoint in a request for an access token. You can then use the returned access token to make Box API calls.
@@ -87,7 +98,7 @@ Update the information about a file, including renaming or moving the file.
 | name                            | String| The new name for the file
 | description                     | String| The new description for the file
 | parentId                        | String                          | The ID of the parent folder. Use '0' for the root folder.
-| sharedLinkAccess                | String                          | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
+| sharedLinkAccess                | Select                          | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
 | sharedLinkPassword              | String                          | The password required to access the shared link. Set to ```null``` to remove the password.
 | sharedLinkUnsharedAt            | String                          | The date-time that this link will become disabled. This field can only be set by users with paid accounts.
 | sharedLinkPermissionsCanDownload| String                          | Whether the shared link allows downloads. Can only be set with access levels ```open``` and ```company``` (not collaborators).
@@ -252,7 +263,7 @@ Create a new folder.
 | name                            | String | The desired name for the folder
 | description                     | String | The description of the folder
 | parentId                        | String | The ID of the parent folder
-| sharedLinkAccess                | String | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
+| sharedLinkAccess                | Select | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
 | sharedLinkPassword              | String | The password required to access the shared link. Set to ```null``` to remove the password.
 | sharedLinkUnsharedAt            | String | The date-time that this link will become disabled. This field can only be set by users with paid accounts.
 | sharedLinkPermissionsCanDownload| Boolean| Whether the shared link allows downloads. For shared links on folders, this also applies to any items in the folder. Can only be set with access levels ```open``` and ```company``` (not ```collaborators```)
@@ -296,7 +307,7 @@ Get the shared link for a file or folder.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| The ID of the file or folder
-| endpoint   | String| ```files``` or ```folders```
+| endpoint   | Select| ```files``` or ```folders```
 
 ## Box.createFileSharedLink
 Create the shared link for a file or folder.
@@ -306,7 +317,7 @@ Create the shared link for a file or folder.
 | accessToken                     | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id                              | String | The ID of the file or folder
 | endpoint                        | String | ```files``` or ```folders```
-| sharedLinkAccess                | String | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
+| sharedLinkAccess                | Select | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
 | sharedLinkPassword              | String | The password required to access the shared link. Set to ```null``` to remove the password.
 | sharedLinkUnsharedAt            | String | The date-time that this link will become disabled. This field can only be set by users with paid accounts.
 | sharedLinkPermissionsCanDownload| Boolean| Whether the shared link allows downloads. For shared links on folders, this also applies to any items in the folder. Can only be set with access levels open and company (not collaborators).
@@ -318,8 +329,8 @@ Update the shared link for a file or folder.
 |---------------------------------|--------|----------
 | accessToken                     | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id                              | String | The ID of the file or folder
-| endpoint                        | String | ```files``` or ```folders```
-| sharedLinkAccess                | String | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
+| endpoint                        | Select | ```files``` or ```folders```
+| sharedLinkAccess                | Select | The level of access. Can be ```open``` ('People with the link'), ```company``` ('People in your company'), or ```collaborators``` ('People in this folder'). If you omit this field then the access level will be set to the default access level specified by the enterprise admin.
 | sharedLinkPassword              | String | The password required to access the shared link. Set to null to remove the password.
 | sharedLinkUnsharedAt            | String | The date-time that this link will become disabled. This field can only be set by users with paid accounts.
 | sharedLinkPermissionsCanDownload| Boolean| Can be open or collaborators
@@ -350,7 +361,7 @@ Get an item that has been moved to the trash.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id         | String| The ID of the file, folder or web link
-| endpoint   | String| ```files```, ```folders``` or ```web_links```
+| endpoint   | Select| ```files```, ```folders``` or ```web_links```
 | fields     | String| Comma-separated list of fields to include in the response
 
 ## Box.restoreTrashedItem
@@ -360,7 +371,7 @@ Restores an item that has been moved to the trash.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id         | String| The ID of the file, folder or web link
-| endpoint   | String| ```files```, ```folders``` or ```web_links```
+| endpoint   | Select| ```files```, ```folders``` or ```web_links```
 | fields     | String| Comma-separated list of fields to include in the response
 | parentId   | String| The ID of the new parent folder. Only used if the previous parent folder no longer exists or the user doesn't have permission to restore the item there.
 | name       | String| The new name for this item. Only used if the item can't be restored with its previous name due to a conflict.
@@ -372,7 +383,7 @@ Permanently delete an item that is in the trash. The item will no longer exist i
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id         | String| The ID of the file, folder or web link
-| endpoint   | String| ```files```, ```folders``` or ```web_links```
+| endpoint   | Select| ```files```, ```folders``` or ```web_links```
 
 ## Box.searchContent
 The search endpoint provides a powerful way to find Box content. Use the parameters described in this section to control what you search for.
@@ -390,7 +401,7 @@ The search endpoint provides a powerful way to find Box content. Use the paramet
 | ancestorFolderIds| String| Search for the contents of specific folders (and folders within them). Requires a folder ID or a set of comma-delimited folder IDs, like so: folder_id_1,folder_id_2
 | contentTypes     | String| Search for objects of specified content types. The types can be name, description, file_content, comments, or tags. Requires a content type or a set of comma-delimited content_types, like so: content_type_1,content_type_2
 | type             | String| The type of objects you want to include in the search results. The type can be file, folder, or web_link
-| trashContent     | String| Controls whether to search in the trash. The value can be ```trashed_only``` or ```non_trashed_only```. Searches without this parameter default to searching ```non_trashed_only```
+| trashContent     | Select| Controls whether to search in the trash. The value can be ```trashed_only``` or ```non_trashed_only```. Searches without this parameter default to searching ```non_trashed_only```
 | fields           | String| Comma-separated list of fields to include in the response
 | offset           | Number| The offset of the item at which to begin the response. See offset-based paging for details.
 | limit            | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
@@ -414,7 +425,7 @@ Create a new metadata template with the specified schema.
 | templateKey     | String | A unique identifier for the template. The identifier must be unique across the scope of the enterprise to which the metadata template is being applied to. Defaults to a string derived from the displayName if no value is provided.
 | displayName     | String | The display name of the template.
 | hidden          | Boolean| Whether this template is hidden in the UI. Defaults to false.
-| fieldType       | String | The data type of the field's value. Templates support four attributes types: ```string```, ```enum```, ```float```, and ```date``` (RFC 3339).
+| fieldType       | Select | The data type of the field's value. Templates support four attributes types: ```string```, ```enum```, ```float```, and ```date``` (RFC 3339).
 | fieldKey        | String | A unique identifier for the field. The identifier must be unique within the template to which it belongs. Defaults to a string derived from the displayName if no value is provided.
 | fieldDisplayName| String | The display name of the field
 
@@ -558,7 +569,7 @@ Update the information for a user.
 | address           | String | The user’s address
 | spaceAmount       | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
 | canSeeManagedUsers| String | Whether the user can see other enterprise users in its contact list
-| status            | String | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
+| status            | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
 ## Box.createAppUser
 Create a new app user in an enterprise. This method only works for service accounts.
@@ -576,7 +587,7 @@ Create a new app user in an enterprise. This method only works for service accou
 | phone               | String | The user’s phone number
 | address             | String | The user’s address
 | spaceAmount         | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
-| status              | String | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
+| status              | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
 ## Box.createUser
 Create a new managed user in an enterprise. This method only works for enterprise admins.
@@ -595,7 +606,7 @@ Create a new managed user in an enterprise. This method only works for enterpris
 | address           | String | The user’s address
 | spaceAmount       | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
 | canSeeManagedUsers| String | Whether the user can see other enterprise users in its contact list
-| status            | String | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
+| status            | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
 ## Box.getSingleUser
 Get information about a user in the enterprise. Requires enterprise administration authorization.
@@ -731,7 +742,7 @@ Add a member to a group.
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userId           | String | The ID of the user to add to the group
 | groupId          | String | The ID of the group to add the user into.
-| role             | String | The role of the user in the group. Default is ```member``` option for ```admin```
+| role             | Select | The role of the user in the group. Default is ```member``` option for ```admin```
 | canRunReports    | Boolean| Can run reports
 | canInstantLogin  | Boolean| Can instant login
 | canCreateAccounts| Boolean| Can create accounts
@@ -744,7 +755,7 @@ Fetches a specific group membership entry.
 |------------------|--------|----------
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupMembershipId| String | Membership Id
-| role             | String | The role of the user in the group. Default is ```member``` option for ```admin```
+| role             | Select | The role of the user in the group. Default is ```member``` option for ```admin```
 | canRunReports    | Boolean| Can run reports
 | canInstantLogin  | Boolean| Can instant login
 | canCreateAccounts| Boolean| Can create accounts
@@ -810,7 +821,7 @@ Create a new collaboration that grants a user or group access to a file or folde
 | accessibleByType | String | user or group
 | accessibleById   | String | The ID of the user or group that is granted access
 | accessibleByLogin| String | The email address of the person to grant access to. Use instead of id to invite new users
-| role             | String | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
+| role             | Select | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
 | canViewPath      | Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
 
 ## Box.updateCollaboration
@@ -821,7 +832,7 @@ Update a collaboration.
 | accessToken| String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | collabId   | String | Collaboration Id
 | fields     | String | The email address to add to the account as an alias
-| role       | String | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
+| role       | Select | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
 | status     | String | The status of the collaboration invitation. Can be accepted, pending, or rejected.
 | canViewPath| Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
 
@@ -1062,7 +1073,7 @@ Used to create a single task for single user on a single file.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| The ID of the file this task is associated with
 | message    | String| An optional message to include with the task
-| dueAt      | String| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
+| dueAt      | DatePicker| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
 
 ## Box.updateTask
 Updates a specific task.
@@ -1072,7 +1083,7 @@ Updates a specific task.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | taskId     | String| Task Id
 | message    | String| An optional message to include with the task
-| dueAt      | String| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
+| dueAt      | DatePicker| When this task is due. Example: ```2014-04-03T11:09:43-07:00```
 
 ## Box.deleteTask
 Permanently deletes a specific task.
@@ -1108,7 +1119,7 @@ Used to update a task assignment
 | accessToken     | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | taskAssignmentId| String| Task Assignment Id
 | message         | String| A message from the assignee about this task
-| resolutionState | String| Can be ```completed```, ```incomplete```, ```approved```, or ```rejected```
+| resolutionState | Select| Can be ```completed```, ```incomplete```, ```approved```, or ```rejected```
 
 ## Box.deleteTaskAssignment
 Deletes a specific task assignment.
@@ -1141,7 +1152,7 @@ Used to create a new retention policy. Only Business Plus or Enterprise account.
 |------------------|-------|----------
 | accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyName       | String| Name of retention policy to be created
-| policyType       | String| ```finite``` or ```indefinite```
+| policyType       | Select| ```finite``` or ```indefinite```
 | retentionLength  | Number| The retention_length is the amount of time, in days, to apply the retention policy to the selected content in days. Do not specify for indefinite policies. Required for finite policies.
 | dispositionAction| Number| If creating a finite policy, the disposition action can be ```permanently_delete``` or ```remove_retention```. For indefinite policies, disposition action must be ```remove_retention```.
 
@@ -1280,8 +1291,8 @@ Create a new policy assignment, which applies the legal hold policy to the targe
 |-------------|-------|----------
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | policyId    | String| ID of Policy to create Assignment for.
-| assignToId  | String| Possible values for id are ```file_version_id```, ```file_id```, ```folder_id```, or ```user_id```
-| assignToType| String| Possible values for type are ```file_version```, ```file```, ```folder```, or ```user```
+| assignToId  | Select| Possible values for id are ```file_version_id```, ```file_id```, ```folder_id```, or ```user_id```
+| assignToType| Select| Possible values for type are ```file_version```, ```file```, ```folder```, or ```user```
 
 ## Box.deletePolicyAssignment
 Sends a request to delete an existing policy assignment. Note that this is an asynchronous process - the policy assignment will not be fully deleted yet when the response comes back. Only Business Plus or Enterprise account.

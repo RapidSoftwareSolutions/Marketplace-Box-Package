@@ -4884,9 +4884,14 @@
         },
         {
           "name": "triggers",
-          "type": "String",
+          "type": "List",
           "info": "Event types that trigger notifications for the target. Example: FILE.UPLOADED,FILE.DOWNLOADED",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "trigger",
+            "type": "String",
+            "info": "Trigger name."
+          }
         },
         {
           "name": "address",

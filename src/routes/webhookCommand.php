@@ -10,11 +10,6 @@ $app->post('/api/Box/webhookCommand', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $client = $this->httpClient;
-    $resp = $client->post("https://1efd114c.ngrok.io", [
-        'json' => $post_data
-    ]);
-
     $reply = [
         "http_resp" => "",
         "client_msg" => $post_data['args']['body'],

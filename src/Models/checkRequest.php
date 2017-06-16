@@ -16,10 +16,16 @@ class checkRequest
             $toJson = new normilizeJson();
             $data = $toJson->normalizeJson($data);
             $data = str_replace('\"', '"', $data);
+
+            if(strripos($data, "headers") && strripos($data, "body")){
+                $headers_pos =  strripos($data, "headers");
+                $body_pos =  strripos($data, "body");
+                $data = substr_replace($data,"", $headers_pos-1, ($body_pos-$headers_pos));
+            }
+
             $post_data = json_decode($data, true);
         }
         if (json_last_error() != 0) {
-            return $data;
             $json_error[] = json_last_error_msg() . '. Incorrect input JSON. Please, check fields with JSON input.';
         }
         if (!empty($json_error)) {

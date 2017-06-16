@@ -19,6 +19,7 @@ class checkRequest
             $post_data = json_decode($data, true);
         }
         if (json_last_error() != 0) {
+            return $data;
             $json_error[] = json_last_error_msg() . '. Incorrect input JSON. Please, check fields with JSON input.';
         }
         if (!empty($json_error)) {

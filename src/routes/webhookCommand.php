@@ -17,13 +17,6 @@ $app->post('/api/Box/webhookCommand', function ($request, $response) {
 
     $result['callback'] = 'success';
     $result['contextWrites']['to'] = $reply;
-
-    $client = $this->httpClient;
-
-    $resp = $client->post("https://1efd114c.ngrok.io", [
-        'json' => $result
-    ]);
-
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 
 });

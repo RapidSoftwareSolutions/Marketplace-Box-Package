@@ -3,8 +3,13 @@
 $app->post('/api/Box/webhookCommand', function ($request, $response) {
 
     $checkRequest = $this->validation;
+    $client = $this->httpClient;
+
     $validateRes = $checkRequest->validate($request, []);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
+        $resp = $client->post("https://1efd114c.ngrok.io", [
+            'json' => $request->getParsedBody()
+        ]);
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
         $post_data = $validateRes;

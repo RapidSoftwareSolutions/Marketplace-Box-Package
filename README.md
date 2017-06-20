@@ -18,7 +18,17 @@ Connect to the Box Cloud Storage API to manage, share, and upload files to the c
  |Select|String with predefined values|```sample```
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
 
+## Webhook credentials
+ Please use SDK to test this feature.
+ 0. Go to [RapidAPI](http://rapidapi.com)
+ 1. Log in or create an account
+ 2. Go to [My apps](https://dashboard.rapidapi.com/projects)
+ 3. Add new project with projectName to get your project Key
 
+ | Field      | Type       | Description
+ |------------|------------|----------
+ | projectName     | credentials| Your RapidAPI project name
+ | projectKey | credentials     | Your RapidAPI project key
 
 
 ## Box.getAccessToken
@@ -1346,7 +1356,8 @@ Get information about a webhook.
 | webhookId  | String| Webhook Id
 
 ## Box.createWebhook
-Create a new webhook.
+Create a new webhook. You can use our service as webhookUrl:
+```https://webhooks.rapidapi.com/api/message/Box/webhookCommand/{projectName}/{projectKey} * see credentials description above```
 
 | Field      | Type  | Description
 |------------|-------|----------

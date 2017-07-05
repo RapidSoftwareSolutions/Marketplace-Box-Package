@@ -5086,8 +5086,11 @@
         ]
       },
       "steps": [
-        "Navigate to createWebhook block",
-        "Set webhook to __WEBHOOK_URL__"
+        "Navigate to https://app.box.com/developers/console to get your client ID and security token",
+        "Navigate to https://developer.box.com/reference#authorize and follow the steps to get your authorization code",
+        "Navigate to https://rapidapi.com/package/Box/functions/getAccessToken to get your access token using the authorization code from step 2",
+        "To find the content you want to monitor in your webhook use the https://rapidapi.com/package/Box/functions/searchContent function to find the ID for your file or folder",
+        "Navigate to https://rapidapi.com/package/Box/functions/createWebhook to create a webhook using your access token, content ID, and the following URL:"
       ],
       "args": [
         {

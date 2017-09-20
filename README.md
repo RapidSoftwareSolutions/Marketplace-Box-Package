@@ -8,7 +8,7 @@ Connect to the Box Cloud Storage API to manage, share, and upload files to the c
 ## How to get credentials:
 1. Navigate to your [Box Developer Console](https://app.box.com/developers/console)
 2. On the left hand side, select **Configuration**
-3. Use your **OAuth 2.0 Credentials** to call the [getAccessToken method](https://rapidapi.com/package/Box/functions/getAccessToken)
+3. Use your **OAuth 2.0 Credentials** to call the [getAccessToken](https://rapidapi.com/package/Box/functions/getAccessToken) function
 
 ## Custom datatypes:
  |Datatype|Description|Example

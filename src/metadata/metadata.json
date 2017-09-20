@@ -18,6 +18,11 @@
       "clientSecret"
     ]
   },
+  "steps": [
+    "Navigate to your Box Developer Console (https://app.box.com/developers/console)",
+    "On the left hand side, select Configuration",
+    "Use your OAuth 2.0 Credentials to call the getAccessToken (https://rapidapi.com/package/Box/functions/getAccessToken) method"
+  ],
   "blocks": [
     {
     "name": "getAccessToken",

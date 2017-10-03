@@ -27,26 +27,24 @@
     {
     "name": "getAccessToken",
     "description": "Returns access tokens. An access token is a data string that enables Box to verify that a request belongs to an authorized session. In the normal order of operations you will begin by requesting authentication from the Box authorize endpoint and Box will send you an authorization code. You will then send the authorization code to the token endpoint in a request for an access token. You can then use the returned access token to make Box API calls.",
-    "args": [{
-      "name": "code",
-      "type": "String",
-      "info": "The authorization code returned by Box in response to a successfull authentication request.",
-      "required": true
-    },
+    "args": [
       {
         "name": "clientId",
         "type": "credentials",
         "info": "The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
-        "client_id ": "The text of that item is your application's client ID.",
         "required": true
       },
       {
         "name": "clientSecret",
         "type": "credentials",
         "info": "The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
-        "client_secret": "The text of that item is your application's client secret.",
         "required": true
-      }
+      },{
+      "name": "code",
+      "type": "String",
+      "info": "The authorization code returned by Box in response to a successfull authentication request.",
+      "required": true
+    }
     ],
     "callbacks": [{
       "name": "error",
@@ -59,26 +57,24 @@
     {
       "name": "revokeAccessToken",
       "description": "Revoke endpoint, the endpoint that revokes access tokens, or to put it another way, the endpoint that ends sessions, logging users out.",
-      "args": [{
-        "name": "token",
-        "type": "String",
-        "info": "An access token or refresh token supplied by Box in response to a token request. When either token is supplied with this request, both will be revoked.",
-        "required": true
-      },
+      "args": [
         {
           "name": "clientId",
           "type": "credentials",
           "info": "The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
-          "client_id": "The text of that item is your application's client ID.",
           "required": true
         },
         {
           "name": "clientSecret",
           "type": "credentials",
           "info": "The client secret of the application requesting authentication. To get the client secret for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
-          "client_secret": "The text of that item is your application's client secret.",
           "required": true
-        }
+        },{
+        "name": "token",
+        "type": "String",
+        "info": "An access token or refresh token supplied by Box in response to a token request. When either token is supplied with this request, both will be revoked.",
+        "required": true
+      }
       ],
       "callbacks": [{
         "name": "error",

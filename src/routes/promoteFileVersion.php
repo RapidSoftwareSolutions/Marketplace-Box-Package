@@ -4,7 +4,7 @@ $app->post('/api/Box/promoteFileVersion', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','id']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -16,29 +16,27 @@ $app->post('/api/Box/promoteFileVersion', function ($request, $response) {
     $fileId = $post_data['args']['fileId'];
 
     $data= [];
+    $query = [];
 
-    $optionalParam = ['fields'=>'fields','id'=>'id'];
-
-    foreach ($post_data['args'] as $key=>$value)
+    if(!empty($post_data['args']['fields']))
     {
-        if(array_key_exists($key, $optionalParam) && !empty($value))
-        {
-            $data[$optionalParam[$key]] = $value;
-        }
+        $query['fields'] = implode(",",$post_data['args']['fields']);
     }
 
     $data['type'] = 'file_version';
+    $data['id'] = $post_data['args']['id'];
 
     $query_str = $settings['files_url'] . $fileId . '/versions/current';
     $client = $this->httpClient;
 
     try {
 
-        $resp = $client->get($query_str, [
+        $resp = $client->post($query_str, [
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ],
-            'json' => $data
+            'json' => $data,
+            'query' => $query
         ]);
         $responseBody = $resp->getBody()->getContents();
 

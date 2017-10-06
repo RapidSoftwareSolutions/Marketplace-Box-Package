@@ -16,7 +16,7 @@ $app->post('/api/Box/getGroup', function ($request, $response) {
 
     $fields = [];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
 
     $query_str = $settings['default_url'] . "groups/$groupId";

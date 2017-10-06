@@ -22,6 +22,13 @@ $app->post('/api/Box/getTrashedItems', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
+
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
+
     $query_str = $settings['folder_url'] . "trash/items";
     $client = $this->httpClient;
     try {

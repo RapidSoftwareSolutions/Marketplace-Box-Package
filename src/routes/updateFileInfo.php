@@ -17,8 +17,7 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
 
     $data= [];
 
-    $optionalParam = ['name'=>'name', 'description'=>'description', 'parentId'=>'parent.id', 'sharedLinkAccess'=>'shared_link.access', 'sharedLinkPassword'=>'shared_link.password', 'sharedLinkUnsharedAt'=>'shared_link.unshared_at', 'sharedLinkPermissionsCanDownload'=>'shared_link.permissions.can_download
-', 'tags'=>'tags'];
+    $optionalParam = ['name'=>'name', 'description'=>'description', 'tags'=>'tags', 'fields'=>'fields'];
 
     foreach ($post_data['args'] as $key=>$value)
     {
@@ -26,6 +25,30 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
         {
             $data[$optionalParam[$key]] = $value;
         }
+    }
+
+    if(!empty($data['fields'])){
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
+    if(!empty($post_data['args']['parentId'])){
+        $data['parent']['id'] = $post_data['args']['parentId'];
+    }
+
+    if(!empty($post_data['args']['sharedLinkAccess'])){
+        $data['shared_link']['access'] = $post_data['args']['sharedLinkAccess'];
+    }
+
+    if(!empty($post_data['args']['sharedLinkPassword'])){
+        $data['shared_link']['password'] = $post_data['args']['sharedLinkPassword'];
+    }
+
+    if(!empty($post_data['args']['sharedLinkUnsharedAt'])){
+        $data['shared_link']['unshared_at'] = $post_data['args']['sharedLinkUnsharedAt'];
+    }
+
+    if(!empty($post_data['args']['sharedLinkPermissionsCanDownload'])){
+        $data['shared_link']['permissions']['can_download'] = $post_data['args']['sharedLinkPermissionsCanDownload'];
     }
 
     $query_str = $settings['files_url'] . $fileId;

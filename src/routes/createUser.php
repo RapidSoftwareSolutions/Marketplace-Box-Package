@@ -13,6 +13,9 @@ $app->post('/api/Box/createUser', function ($request, $response) {
     }
 
     $data= [];
+    $query = [];
+
+
     $accessToken = $post_data['args']['accessToken'];
     $data['name'] = $post_data['args']['name'];
     $data['login'] = $post_data['args']['login'];
@@ -25,6 +28,11 @@ $app->post('/api/Box/createUser', function ($request, $response) {
         }
     }
 
+    if(!empty($post_data['args']['fields']))
+    {
+        $query['fields'] = implode(",",$post_data['args']['fields']);
+    }
+
     $query_str = $settings['users_url'];
     $client = $this->httpClient;
     try {
@@ -33,7 +41,8 @@ $app->post('/api/Box/createUser', function ($request, $response) {
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ],
-            'json' => $data
+            'json' => $data,
+            'query' => $query
         ]);
         $responseBody = $resp->getBody()->getContents();
 

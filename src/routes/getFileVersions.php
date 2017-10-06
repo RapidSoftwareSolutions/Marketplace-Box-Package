@@ -27,6 +27,11 @@ $app->post('/api/Box/getFileVersions', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
 
     $query_str = $settings['files_url'] . $fileId . '/versions';
     $client = $this->httpClient;

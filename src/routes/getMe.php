@@ -14,7 +14,7 @@ $app->post('/api/Box/getMe', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
     $fields = [];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
 
     $query_str = $settings['users_url'] . 'me';

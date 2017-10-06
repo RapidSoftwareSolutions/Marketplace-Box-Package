@@ -57,7 +57,7 @@ Get information about a file.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.downloadFile
 Retrieves the actual data of the file. An optional version parameter can be set to download a previous version of the file.
@@ -90,14 +90,14 @@ Uploading a new file version is performed in the same way as uploading a file. T
 | name       | String| New file name
 
 ## Box.verifyFileAcceptance
-Method description
+Verify that a file will be accepted by Box before you send all the bytes over the wire.
 
 | Field      | Type                | Description
 |------------|---------------------|----------
 | accessToken| String              | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | name       | String| File name
 | parentId   | String              | The ID of the parent folder. Use ```0``` for the root folder.
-| size       | String              | The size of the file in bytes
+| size       | Number              | The size of the file in bytes
 
 ## Box.updateFileInfo
 Update the information about a file, including renaming or moving the file.
@@ -114,6 +114,7 @@ Update the information about a file, including renaming or moving the file.
 | sharedLinkUnsharedAt            | String                          | The date-time that this link will become disabled. This field can only be set by users with paid accounts.
 | sharedLinkPermissionsCanDownload| String                          | Whether the shared link allows downloads. Can only be set with access levels ```open``` and ```company``` (not collaborators).
 | tags                            | String                          | All tags attached to this file. To add/remove a tag to/from a file, you can first get the file’s current tags (be sure to specify ?fields=tags, since the tags field is not returned by default); then modify the list as required; and finally, set the file’s entire list of tags.
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.deleteFile
 Move a file to the trash.
@@ -140,7 +141,7 @@ Lock a file.
 |------------------------|--------|----------
 | accessToken            | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId                 | String | File Id
-| lockExpiresAt          | String | The time the lock expires
+| lockExpiresAt          | DatePicker | The time the lock expires
 | lockIsDownloadPrevented| Boolean| Whether or not the file can be downloaded while locked
 
 ## Box.unlockFile
@@ -178,7 +179,7 @@ Get all of the collaborations on a file (i.e. all of the users that have access 
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 | marker     | String| The position marker at which to begin the response
 | limit      | Number| The maximum number of items to return
 
@@ -189,8 +190,8 @@ Get all of the comments on a file.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return
 
 ## Box.getFileTasks
@@ -200,8 +201,8 @@ Get all of the tasks for a file.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 1,000 and the maximum is 1,000.
 
 ## Box.getFileVersions
@@ -211,8 +212,8 @@ Get information on prior versions of a file.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return
 
 ## Box.promoteFileVersion
@@ -222,7 +223,8 @@ Copy a previous file version and make it the current version of the file. This c
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
-| fields     | String| Comma-separated list of fields to include in the response
+| id     | String| The ID of the file version to make current
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.deleteOldFileVersion
 Discards a file version to the trash.
@@ -240,7 +242,7 @@ Get information about a folder.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | folderId   | String| Folder Id. The root folder of a Box account is always represented by the ID ```0```.
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.getFolderItems
 Gets all of the files, folders, or web links contained within this folder.
@@ -249,8 +251,8 @@ Gets all of the files, folders, or web links contained within this folder.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | folderId   | String| Folder Id
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.createFolder
@@ -259,18 +261,18 @@ Create a new folder.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 | name       | String| The desired name for the folder
 | parentId   | String| The ID of the parent folder
 
 ## Box.updateFolder
-Create a new folder.
+Update a folder.
 
 | Field                           | Type   | Description
 |---------------------------------|--------|----------
 | accessToken                     | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | folderId                        | String | Folder Id
-| fields                          | String | Comma-separated list of fields to include in the response
+| fields                          | List|    Comma-separated list of fields to include in the response
 | name                            | String | The desired name for the folder
 | description                     | String | The description of the folder
 | parentId                        | String | The ID of the parent folder
@@ -299,7 +301,7 @@ Used to create a copy of a folder in another folder. The original version of the
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | folderId   | String| Folder id
 | parentId   | String| The ID of the destination folder
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 | name       | String| An optional new name for the folder
 
 ## Box.getFolderCollaborations
@@ -309,7 +311,7 @@ Use this to get a list of all the collaborations on a folder i.e. all of the use
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | folderId   | String| Folder id
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.getFileSharedLink
 Get the shared link for a file or folder.
@@ -361,8 +363,8 @@ Gets the files, folders and web links that are in the user's trash.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getSingleTrashedItem
@@ -373,7 +375,7 @@ Get an item that has been moved to the trash.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id         | String| The ID of the file, folder or web link
 | endpoint   | Select| ```files```, ```folders``` or ```web_links```
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 
 ## Box.restoreTrashedItem
 Restores an item that has been moved to the trash.
@@ -383,7 +385,7 @@ Restores an item that has been moved to the trash.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | id         | String| The ID of the file, folder or web link
 | endpoint   | Select| ```files```, ```folders``` or ```web_links```
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 | parentId   | String| The ID of the new parent folder. Only used if the previous parent folder no longer exists or the user doesn't have permission to restore the item there.
 | name       | String| The new name for this item. Only used if the item can't be restored with its previous name due to a conflict.
 
@@ -404,17 +406,17 @@ The search endpoint provides a powerful way to find Box content. Use the paramet
 | accessToken      | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | query            | String| The string to search for. Box matches the search string against object names, descriptions, text contents of files, and other data.
 | scope            | String| The scope on which you want search. Can be ```user_content``` for a search limited to the current user or ```enterprise_content``` to search an entire enterprise.
-| fileExtensions   | String| Limit searches to specific file extensions like ```pdf```,```png```, or ```doc```. The value can be a single file extension or a comma-delimited list of extensions. For example: ```png,md,pdf```
-| createdAtRange   | String| The date when the item was created. Specify the date range using RFC3339 timestamps separated by a comma. For example: `2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.
-| updatedAtRange   | String| The date when the item was updated. Specify the date range using RFC3339 timestamps separated by a comma. For example: ```2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00```. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.
+| fileExtensions   | List| Limit searches to specific file extensions like ```pdf```,```png```, or ```doc```. The value can be a single file extension or a comma-delimited list of extensions. For example: ```png,md,pdf```
+| createdAtRange   | DatePicker| The date when the item was created. Specify the date range using RFC3339 timestamps separated by a comma. For example: `2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.
+| updatedAtRange   | DatePicker| The date when the item was updated. Specify the date range using RFC3339 timestamps separated by a comma. For example: ```2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00```. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.
 | sizeRange        | String| Return only files within a stated size range. Specify the range in bytes with lower and upper bounds separated by a comma, like so:```lower_bound_size,upper_bound_size```, where 1MB is 1,000,000 bytes. You can specify only the lower bound if you end this parameter with a comma. You can specify only the upper bound by placing a comma at the beginning of the number.
-| ownerUserIds     | String| Search for objects by owner. Requires a user ID or a set of comma-delimited user IDs, like so: user_id_1,user_id_2
-| ancestorFolderIds| String| Search for the contents of specific folders (and folders within them). Requires a folder ID or a set of comma-delimited folder IDs, like so: folder_id_1,folder_id_2
-| contentTypes     | String| Search for objects of specified content types. The types can be name, description, file_content, comments, or tags. Requires a content type or a set of comma-delimited content_types, like so: content_type_1,content_type_2
+| ownerUserIds     | List| Search for objects by owner. Requires a user ID or a set of comma-delimited user IDs, like so: user_id_1,user_id_2
+| ancestorFolderIds| List| Search for the contents of specific folders (and folders within them). Requires a folder ID or a set of comma-delimited folder IDs, like so: folder_id_1,folder_id_2
+| contentTypes     | List| Search for objects of specified content types. The types can be name, description, file_content, comments, or tags. Requires a content type or a set of comma-delimited content_types, like so: content_type_1,content_type_2
 | type             | String| The type of objects you want to include in the search results. The type can be file, folder, or web_link
 | trashContent     | Select| Controls whether to search in the trash. The value can be ```trashed_only``` or ```non_trashed_only```. Searches without this parameter default to searching ```non_trashed_only```
-| fields           | String| Comma-separated list of fields to include in the response
-| offset           | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields           | List| Comma-separated list of fields to include in the response
+| offset           | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit            | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getMetadataTemplate
@@ -446,11 +448,11 @@ Used to retrieve all metadata templates within a user's enterprise. Only the ent
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| marker     | String| The position marker at which to begin the response. See marker-based paging for details.
-| limit      | String| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+| marker     | String| The position marker at which to begin the response. See [marker-based paging](https://developer.box.com/reference#marker-based-paging) for details.
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getFileAllMetadata
-Used to retrieve all metadata associated with a given file
+Used to retrieve all metadata associated with a given file.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -458,7 +460,7 @@ Used to retrieve all metadata associated with a given file
 | fileId     | String| File id
 
 ## Box.getFileSingleMetadata
-Used to retrieve all metadata associated with a given file
+Get the metadata instance for a file.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -535,7 +537,7 @@ Invite an existing user to join an Enterprise.
 | Field       | Type  | Description
 |-------------|-------|----------
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields      | String| Comma-separated list of fields to include in the response
+| fields      | List| Comma-separated list of fields to include in the response
 | enterpriseId| String| The ID of the enterprise the user will be invited to
 | login       | String| The login of the user that will receive the invitation
 
@@ -547,9 +549,14 @@ Returns all of the users for the Enterprise. Only available to admin accounts or
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userType   | String| The type of user to search for. One of all, external or managed. The default is managed
 | filterTerm | String| Only return users whose name or login matches the ```filter_term```. See notes below for details on the matching.
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | String| The offset of the item at which to begin the response. See offset-based paging for details.
-| limit      | String| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
+| limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
+
+```When searching using filterTerm, managed users (and app users) match if either the name or login start with the given string (initial match). External users only match if the login exactly matches the given string (exact match). All matching is case-insensitive.
+   If filter_term is omitted, all managed users (and app users) will be returned. External users can only be returned with an exact match of filterTerm.
+   When called by a service account, this API will return either only app users or all enterprise users depending on the authorized scope of the app. 
+```
 
 ## Box.deleteUser
 Delete a user.
@@ -568,7 +575,7 @@ Update the information for a user.
 |-------------------|--------|----------
 | accessToken       | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userId            | String | The ID of the user
-| fields            | String | Comma-separated list of fields to include in the response
+| fields            | List| Comma-separated list of fields to include in the response
 | notify            | Boolean| Whether the destination user will receive email notification of the transfer
 | enterprise        | String | Set this to null to roll the user out of the enterprise and make them a free user
 | name              | String | The name of this user
@@ -578,7 +585,7 @@ Update the information for a user.
 | jobTitle          | String | The user’s job title
 | phone             | String | The user’s phone number
 | address           | String | The user’s address
-| spaceAmount       | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
+| spaceAmount       | Number | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
 | canSeeManagedUsers| String | Whether the user can see other enterprise users in its contact list
 | status            | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
@@ -588,7 +595,7 @@ Create a new app user in an enterprise. This method only works for service accou
 | Field               | Type   | Description
 |---------------------|--------|----------
 | accessToken         | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields              | String | Comma-separated list of fields to include in the response
+| fields              | List| Comma-separated list of fields to include in the response
 | name                | String | The name of this user
 | isPlatformAccessOnly| Boolean| The name of this user
 | notify              | Boolean| Whether the destination user will receive email notification of the transfer
@@ -597,7 +604,7 @@ Create a new app user in an enterprise. This method only works for service accou
 | jobTitle            | String | The user’s job title
 | phone               | String | The user’s phone number
 | address             | String | The user’s address
-| spaceAmount         | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
+| spaceAmount         | Number | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
 | status              | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
 ## Box.createUser
@@ -606,7 +613,7 @@ Create a new managed user in an enterprise. This method only works for enterpris
 | Field             | Type   | Description
 |-------------------|--------|----------
 | accessToken       | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields            | String | Comma-separated list of fields to include in the response
+| fields            | List| Comma-separated list of fields to include in the response
 | login             | String | The email address the user uses to login
 | name              | String | The name of this user
 | role              | String | The user’s enterprise role. Can be coadmin or user
@@ -615,7 +622,7 @@ Create a new managed user in an enterprise. This method only works for enterpris
 | jobTitle          | String | The user’s job title
 | phone             | String | The user’s phone number
 | address           | String | The user’s address
-| spaceAmount       | String | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
+| spaceAmount       | Number | The user’s total available space amount in byte. A value of -1 grants unlimited storage.
 | canSeeManagedUsers| String | Whether the user can see other enterprise users in its contact list
 | status            | Select | ```active```, ```inactive```, ```cannot_delete_edit```, or ```cannot_delete_edit_upload```
 
@@ -625,7 +632,7 @@ Get information about a user in the enterprise. Requires enterprise administrati
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields     | String| Comma-separated list of fields to include in the response
+| fields     | List| Comma-separated list of fields to include in the response
 | userId     | String| The ID of the user
 
 ## Box.deleteEmailAlias
@@ -652,7 +659,7 @@ Get information about the user who is currently logged in (i.e. the user for who
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields     | String| The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 
 ## Box.getEmailAliases
 Retrieves all email aliases for this user.
@@ -669,7 +676,7 @@ Used to convert one of the user’s confirmed email aliases into the user’s pr
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userId     | String| The ID of the user
-| fields     | String| The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 | login      | String| The email alias to become the primary email
 
 ## Box.moveOwnedItems
@@ -681,7 +688,7 @@ Move all of the items owned by a user into a new folder in another user’s acco
 | userId     | String | The ID of the user
 | folderId   | String | Must be 0 (the user's root folder)
 | ownedById  | String | The ID of the user who the folder will be transferred to
-| fields     | String | The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 | notify     | Boolean| Whether the destination user should receive email notification of the transfer
 
 ## Box.getGroup
@@ -691,7 +698,7 @@ Get information about a group.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupId    | String| Group ID
-| fields     | String| The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 
 ## Box.createGroup
 Create a new group.
@@ -700,7 +707,7 @@ Create a new group.
 |-----------------------|-------|----------
 | accessToken           | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | name                  | String| The name of the new group to be created
-| fields                | String| The email address to add to the account as an alias
+| fields                | List| The email address to add to the account as an alias
 | provenance            | String| Typically used to track the external source where the group is coming from. Retrieved through the fields parameter.
 | externalSyncIdentifier| String| Typically used as a group identifier for groups coming from an external source. Retrieved through the fields parameter.
 | description           | String| Description of the group. Retrieved through the fields parameter.
@@ -712,7 +719,7 @@ Update a group.
 |-----------------------|-------|----------
 | accessToken           | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupId               | String| Group ID
-| fields                | String| The email address to add to the account as an alias
+| fields                | List| The email address to add to the account as an alias
 | name                  | String| The name of the new group to be created
 | provenance            | String| Typically used to track the external source where the group is coming from. Retrieved through the fields parameter.
 | externalSyncIdentifier| String| Typically used as a group identifier for groups coming from an external source. Retrieved through the fields parameter.
@@ -733,8 +740,8 @@ Returns all of the groups for given enterprise. Must have permissions to see an 
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | name       | String| Only return groups whose name contains a word starting with the given string (case insensitive)
-| fields     | String| The email address to add to the account as an alias
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| The email address to add to the account as an alias
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getMembership
@@ -787,7 +794,7 @@ Returns all of the members for a given group if the requesting user has access.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupId    | String| Group id
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getUserMemberships
@@ -797,7 +804,7 @@ Returns all of the group memberships for a given user. Note this is only availab
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | userId     | String| User id
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getGroupCollaborations
@@ -807,7 +814,7 @@ Returns all of the group collaborations for a given group. Note this is only ava
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | groupId    | String| Group id
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getCollaboration
@@ -817,7 +824,7 @@ Get information about a collaboration.
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | collabId   | String| Collaboration Id
-| fields     | String| The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 
 ## Box.createCollaboration
 Create a new collaboration that grants a user or group access to a file or folder in a specific role.
@@ -825,14 +832,14 @@ Create a new collaboration that grants a user or group access to a file or folde
 | Field            | Type   | Description
 |------------------|--------|----------
 | accessToken      | String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields           | String | The email address to add to the account as an alias
+| fields           | List| The email address to add to the account as an alias
 | notify           | Boolean| Determines if the user (or all the users in the group) will receive email notifications
 | itemType         | String | file or folder
 | itemId           | String | The ID of the file or folder that access is granted to
 | accessibleByType | String | user or group
 | accessibleById   | String | The ID of the user or group that is granted access
 | accessibleByLogin| String | The email address of the person to grant access to. Use instead of id to invite new users
-| role             | Select | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
+| role             | Select | The level of access granted.
 | canViewPath      | Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
 
 ## Box.updateCollaboration
@@ -842,7 +849,7 @@ Update a collaboration.
 |------------|--------|----------
 | accessToken| String | Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | collabId   | String | Collaboration Id
-| fields     | String | The email address to add to the account as an alias
+| fields     | List| The email address to add to the account as an alias
 | role       | Select | The level of access granted. Can be ```editor```, ```viewer```, ```previewer```, ```uploader```, ```previewer uploader```, ```viewer uploader```, ```co-owner```, or ```owner```
 | status     | String | The status of the collaboration invitation. Can be accepted, pending, or rejected.
 | canViewPath| Boolean| Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder (e.g. see content the user is not collaborated on).
@@ -861,8 +868,8 @@ Get all pending collaboration invites for a user.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| fields     | String| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields     | List| Comma-separated list of fields to include in the response
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.getSingleComment
@@ -955,7 +962,7 @@ Retrieves up to a year' events for all users in an enterprise. Upper and lower b
 | Field         | Type  | Description
 |---------------|-------|----------
 | accessToken   | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| eventType     | String| A comma-separated list of event types. Only matching events are returned.
+| eventType     | List| List of event types. Only matching events are returned.
 | streamPosition| String| The location in the event stream from which you want to start receiving events. You can specify the special value now to get 0 events and the latest stream_position value. Specifying 0 will return all available events.
 | limit         | Number| The maximum number of items to return. The default is 100 and the maximum is 500.
 
@@ -1047,8 +1054,8 @@ Retrieves the files and/or folders contained within this collection. Collection 
 |-------------|-------|----------
 | accessToken | String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | collectionId| String| Collection Id.
-| fields      | String| Comma-separated list of fields to include in the response
-| offset      | Number| The offset of the item at which to begin the response. See offset-based paging for details.
+| fields      | List| Comma-separated list of fields to include in the response
+| offset      | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit       | Number| The maximum number of items to return. The default is 100 and the maximum is 1,000.
 
 ## Box.addItemsToCollection
@@ -1345,7 +1352,7 @@ Get all webhooks in an enterprise.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
-| marker     | String| The position marker at which to begin the response. See marker-based paging for details.
+| marker     | String| The position marker at which to begin the response. See [marker-based paging](https://developer.box.com/reference#marker-based-paging) for details.
 | limit      | Number| The maximum number of items to return. The default is 100 and the maximum is 200.
 
 ## Box.getSingleWebhook

@@ -27,6 +27,10 @@ $app->post('/api/Box/getFileTasks', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
 
     $query_str = $settings['files_url'] . $fileId . '/tasks';
     $client = $this->httpClient;

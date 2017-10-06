@@ -25,6 +25,11 @@ $app->post('/api/Box/createAppUser', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
     $query_str = $settings['users_url'];
     $client = $this->httpClient;
     try {

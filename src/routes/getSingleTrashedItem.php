@@ -26,6 +26,11 @@ $app->post('/api/Box/getSingleTrashedItem', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
     $query_str = $settings['default_url'] . "$endpoint/$id/trash";
     $client = $this->httpClient;
     try {

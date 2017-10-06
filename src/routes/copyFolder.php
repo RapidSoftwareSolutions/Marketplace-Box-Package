@@ -15,7 +15,8 @@ $app->post('/api/Box/copyFolder', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
     $folderId = $post_data['args']['folderId'];
 
-    $data= [];
+    $data = [];
+    $query = [];
 
     $data['parent'] = ['id'=>$post_data['args']['parentId']];
 
@@ -25,7 +26,7 @@ $app->post('/api/Box/copyFolder', function ($request, $response) {
     }
     if(!empty($post_data['args']['fields']))
     {
-        $data['fields'] = $post_data['args']['fields'];
+        $query['fields'] = implode(",",$post_data['args']['fields']);
     }
 
 
@@ -38,7 +39,8 @@ $app->post('/api/Box/copyFolder', function ($request, $response) {
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ],
-            'json' => $data
+            'json' => $data,
+            'query' => $query
         ]);
         $responseBody = $resp->getBody()->getContents();
 

@@ -23,6 +23,33 @@ $app->post('/api/Box/searchContent', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
+
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
+    if(!empty($data['file_extensions']))
+    {
+        $data['file_extensions'] = implode(",",$data['file_extensions']);
+    }
+
+    if(!empty($data['content_types']))
+    {
+        $data['content_types'] = implode(",",$data['content_types']);
+    }
+
+    if(!empty($data['ancestor_folder_ids']))
+    {
+        $data['ancestor_folder_ids'] = implode(",",$data['ancestor_folder_ids']);
+    }
+
+    if(!empty($data['owner_user_ids']))
+    {
+        $data['owner_user_ids'] = implode(",",$data['owner_user_ids']);
+    }
+
+
     $query_str = $settings['default_url'] . "search";
     $client = $this->httpClient;
     try {

@@ -14,6 +14,7 @@ $app->post('/api/Box/getEnterpriseEvents', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
 
     $fields['stream_type']="admin_logs";
+
     if(!empty($post_data['args']['streamPosition'])){
         $fields['stream_position'] = $post_data['args']['streamPosition'];
     }
@@ -22,6 +23,10 @@ $app->post('/api/Box/getEnterpriseEvents', function ($request, $response) {
     }
     if(!empty($post_data['args']['limit'])){
         $fields['limit'] = $post_data['args']['limit'];
+    }
+
+    if(!empty($post_data['args']['eventType'])){
+        $fields['eventType'] = implode(",",$post_data['args']['eventType']);
     }
 
     $query_str = $settings['default_url'] . "events";

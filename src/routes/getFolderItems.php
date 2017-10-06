@@ -27,6 +27,11 @@ $app->post('/api/Box/getFolderItems', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
     $query_str = $settings['folder_url'] . $folderId . '/items';
     $client = $this->httpClient;
 

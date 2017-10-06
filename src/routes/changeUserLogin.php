@@ -15,7 +15,7 @@ $app->post('/api/Box/changeUserLogin', function ($request, $response) {
     $userId = $post_data['args']['userId'];
     $fields = [];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
     $data['login'] = $post_data['args']['login'];
 

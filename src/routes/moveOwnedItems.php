@@ -23,6 +23,13 @@ $app->post('/api/Box/moveOwnedItems', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
+
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
+
     $owned["owned_by"] = ["id"=>$post_data['args']['ownedById']];
     $query_str = $settings['users_url'] . $userId . '/folders/' . $folderId;
     $client = $this->httpClient;

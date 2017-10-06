@@ -25,6 +25,11 @@ $app->post('/api/Box/createFolder', function ($request, $response) {
         }
     }
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = implode(",",$data['fields']);
+    }
+
     $data['name'] = $post_data['args']['name'];
     $data['parent'] = ["id"=>$post_data['args']['parentId']];
 

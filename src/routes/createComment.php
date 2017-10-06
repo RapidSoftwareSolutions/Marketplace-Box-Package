@@ -4,7 +4,7 @@ $app->post('/api/Box/createComment', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','itemType','itemId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','itemType','itemId','message']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -15,10 +15,8 @@ $app->post('/api/Box/createComment', function ($request, $response) {
 
     $data['item']['type'] = $post_data['args']['itemType'];
     $data['item']['id'] = $post_data['args']['itemId'];
+    $data['message'] = $post_data['args']['message'];
 
-    if(!empty($post_data['args']['message'])){
-        $data['message'] = $post_data['args']['message'];
-    }
     if(!empty($post_data['args']['taggedMessage'])){
         $data['tagged_message'] = $post_data['args']['taggedMessage'];
     }

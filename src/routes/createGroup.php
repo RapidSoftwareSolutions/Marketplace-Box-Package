@@ -15,7 +15,7 @@ $app->post('/api/Box/createGroup', function ($request, $response) {
 
     $fields = [];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
 
     $data['name'] = $post_data['args']['name'];

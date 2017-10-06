@@ -16,7 +16,7 @@ $app->post('/api/Box/updateGroup', function ($request, $response) {
 
     $fields = [];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
 
     $data['invitability_level'] = 'all_managed_users';

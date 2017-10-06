@@ -14,16 +14,16 @@ $app->post('/api/Box/updateFolder', function ($request, $response) {
 
     $accessToken = $post_data['args']['accessToken'];
     $folderId = $post_data['args']['folderId'];
-    $fields = "";
+    $query = [];
     $data= [];
     $optionalParam = ['name'=>'name','description'=>'description','sync_state'=>'sync_state','tags'=>'tags'];
 
     if(!empty($post_data['args']['fields']))
     {
-        $fields = $post_data['args']['fields'];
+        $query['fields'] = implode(",",$post_data['args']['fields']);
     }
 
-    if(!empty($post_data['args']['parentId']))
+    if(isset($post_data['args']['parentId']))
     {
         $data['parent'] = ["id"=>$post_data['args']['parentId']];
     }
@@ -67,7 +67,7 @@ $app->post('/api/Box/updateFolder', function ($request, $response) {
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ],
-            'query'=>$fields,
+            'query'=>$query,
             'json' => $data
         ]);
         $responseBody = $resp->getBody()->getContents();

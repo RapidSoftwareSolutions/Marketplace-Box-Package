@@ -15,7 +15,7 @@ $app->post('/api/Box/getPendingCollaborations', function ($request, $response) {
 
     $fields['status'] = 'pending';
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
     if(!empty($post_data['args']['offset'])){
         $fields['offset'] = $post_data['args']['offset'];

@@ -27,7 +27,7 @@ $app->post('/api/Box/updateWebLink', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
-    if(!empty($post_data['args']['parentId']))
+    if(isset($post_data['args']['parentId']))
     {
         $data['parent']["id"] = $post_data['args']['parentId'];
     }

@@ -23,6 +23,10 @@ $app->post('/api/Box/getCollectionItems', function ($request, $response) {
         $query['limit'] = $post_data['args']['limit'];
     }
 
+    if(!empty($post_data['args']['fields'])){
+        $query['fields'] = implode(",",$post_data['args']['fields']);
+    }
+
     $client = $this->httpClient;
 
     try {

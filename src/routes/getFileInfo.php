@@ -19,7 +19,7 @@ $app->post('/api/Box/getFileInfo', function ($request, $response) {
 
     if(!empty($post_data['args']['fields']))
     {
-        $data['fields'] = $post_data['args']['fields'];
+        $data['fields'] = implode(",",$post_data['args']['fields']);
     }
 
 

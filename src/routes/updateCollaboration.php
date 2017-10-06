@@ -12,7 +12,7 @@ $app->post('/api/Box/updateCollaboration', function ($request, $response) {
         $post_data = $validateRes;
     }
     $accessToken = $post_data['args']['accessToken'];
-    $data['role'] = $post_data['args']['role'];
+
     $collabId = $post_data['args']['collabId'];
 
     $fields = [];
@@ -21,6 +21,7 @@ $app->post('/api/Box/updateCollaboration', function ($request, $response) {
     }
 
     $data = [];
+    $data['role'] = $post_data['args']['role'];
     if(!empty($post_data['args']['status'])){
         $data['status'] = $post_data['args']['status'];
     }

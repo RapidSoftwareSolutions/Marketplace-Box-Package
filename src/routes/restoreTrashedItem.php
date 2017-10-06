@@ -16,7 +16,7 @@ $app->post('/api/Box/restoreTrashedItem', function ($request, $response) {
     $endpoint = $post_data['args']['endpoint'];
 
     $data= [];
-    $fields="";
+    $fields = "";
     $optionalParam = ['name'=>'name'];
     foreach ($post_data['args'] as $key=>$value)
     {
@@ -25,11 +25,13 @@ $app->post('/api/Box/restoreTrashedItem', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
+
+
     if(!empty($post_data['args']['parentId'])){
         $data['parent'] = ["id"=>$post_data['args']['parentId']];
     }
     if(!empty($post_data['args']['fields'])){
-        $fields = $post_data['args']['fields'];
+        $fields = implode(",",$post_data['args']['fields']);
     }
 
     $query_str = $settings['default_url'] . "$endpoint/$id";

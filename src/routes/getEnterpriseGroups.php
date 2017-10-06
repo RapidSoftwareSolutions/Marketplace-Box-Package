@@ -23,6 +23,10 @@ $app->post('/api/Box/getEnterpriseGroups', function ($request, $response) {
         $fields['limit'] = $post_data['args']['limit'];
     }
 
+    if(!empty($post_data['args']['name'])){
+        $fields['name'] = $post_data['args']['name'];
+    }
+
 
     $query_str = $settings['default_url'] . "groups";
     $client = $this->httpClient;

@@ -16,7 +16,7 @@ $app->post('/api/Box/updateUser', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
     $userId = $post_data['args']['userId'];
     if(!empty($post_data['args']['fields'])){
-        $fields['fields'] = $post_data['args']['fields'];
+        $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
     $optionalParam = ['notify'=>'notify', 'enterprise'=>'enterprise','name'=>'name','role'=>'role','language'=>'language','isSyncEnabled'=>'is_sync_enabled','jobTitle'=>'job_title','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','canSeeManagedUsers'=>'can_see_managed_users','status'=>'status'];
     foreach ($post_data['args'] as $key=>$value)
@@ -26,6 +26,7 @@ $app->post('/api/Box/updateUser', function ($request, $response) {
             $data[$optionalParam[$key]] = $value;
         }
     }
+
     $query_str = $settings['users_url'] . $userId;
     $client = $this->httpClient;
     try {

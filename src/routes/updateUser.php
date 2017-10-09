@@ -18,12 +18,21 @@ $app->post('/api/Box/updateUser', function ($request, $response) {
     if(!empty($post_data['args']['fields'])){
         $fields['fields'] = implode(",",$post_data['args']['fields']);
     }
-    $optionalParam = ['notify'=>'notify', 'enterprise'=>'enterprise','name'=>'name','role'=>'role','language'=>'language','isSyncEnabled'=>'is_sync_enabled','jobTitle'=>'job_title','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','canSeeManagedUsers'=>'can_see_managed_users','status'=>'status'];
+    $optionalParam = ['enterprise'=>'enterprise','name'=>'name','role'=>'role','language'=>'language','isSyncEnabled'=>'is_sync_enabled','jobTitle'=>'job_title','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','canSeeManagedUsers'=>'can_see_managed_users','status'=>'status'];
     foreach ($post_data['args'] as $key=>$value)
     {
         if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data[$optionalParam[$key]] = $value;
+        }
+    }
+
+    if(isset($post_data['args']['notify']))
+    {
+        if($post_data['args']['notify'] == "true"){
+            $data['notify'] = true;
+        } else {
+            $data['notify'] = false;
         }
     }
 

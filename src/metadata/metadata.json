@@ -2181,7 +2181,8 @@
         },
         {
           "name": "notify",
-          "type": "Boolean",
+          "type": "Select",
+          "options": ["true","false"],
           "info": "Whether the destination user will receive email notification of the transfer",
           "required": false
         },

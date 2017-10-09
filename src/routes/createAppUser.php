@@ -16,7 +16,7 @@ $app->post('/api/Box/createAppUser', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
     $data['name'] = $post_data['args']['name'];
     $data['is_platform_access_only'] = $post_data['args']['isPlatformAccessOnly'];
-    $optionalParam = ['fields'=>'fields', 'notify'=>'notify','enterprise'=>'enterprise','language'=>'language','jobTitle'=>'jobTitle','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','status'=>'status'];
+    $optionalParam = ['fields'=>'fields','enterprise'=>'enterprise','language'=>'language','jobTitle'=>'jobTitle','phone'=>'phone','address'=>'address','spaceAmount'=>'space_amount','status'=>'status'];
     foreach ($post_data['args'] as $key=>$value)
     {
         if(array_key_exists($key, $optionalParam) && !empty($value))
@@ -28,6 +28,15 @@ $app->post('/api/Box/createAppUser', function ($request, $response) {
     if(!empty($data['fields']))
     {
         $data['fields'] = implode(",",$data['fields']);
+    }
+
+    if(isset($post_data['args']['notify']))
+    {
+        if($post_data['args']['notify'] == "true"){
+            $data['notify'] = true;
+        } else {
+            $data['notify'] = false;
+        }
     }
 
     $query_str = $settings['users_url'];

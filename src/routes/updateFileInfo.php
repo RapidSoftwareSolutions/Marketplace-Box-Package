@@ -15,9 +15,10 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
     $accessToken = $post_data['args']['accessToken'];
     $fileId = $post_data['args']['fileId'];
 
-    $data= [];
+    $data = [];
+    $query = [];
 
-    $optionalParam = ['name'=>'name', 'description'=>'description', 'tags'=>'tags', 'fields'=>'fields'];
+    $optionalParam = ['name'=>'name', 'description'=>'description', 'tags'=>'tags'];
 
     foreach ($post_data['args'] as $key=>$value)
     {
@@ -27,11 +28,11 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
         }
     }
 
-    if(!empty($data['fields'])){
-        $data['fields'] = implode(",",$data['fields']);
+    if(!empty($post_data['args']['fields'])){
+        $query['fields'] = implode(",",$post_data['args']['fields']);
     }
 
-    if(!empty($post_data['args']['parentId'])){
+    if(isset($post_data['args']['parentId'])){
         $data['parent']['id'] = $post_data['args']['parentId'];
     }
 
@@ -47,8 +48,12 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
         $data['shared_link']['unshared_at'] = $post_data['args']['sharedLinkUnsharedAt'];
     }
 
-    if(!empty($post_data['args']['sharedLinkPermissionsCanDownload'])){
-        $data['shared_link']['permissions']['can_download'] = $post_data['args']['sharedLinkPermissionsCanDownload'];
+    if(isset($post_data['args']['sharedLinkPermissionsCanDownload'])){
+        if($post_data['args']['sharedLinkPermissionsCanDownload'] == "true"){
+            $data['shared_link']['permissions']['can_download'] = true;
+        } else {
+            $data['shared_link']['permissions']['can_download'] = false;
+        }
     }
 
     $query_str = $settings['files_url'] . $fileId;
@@ -60,7 +65,8 @@ $app->post('/api/Box/updateFileInfo', function ($request, $response) {
             'headers' => [
                 'Authorization' => 'Bearer ' .$accessToken,
             ],
-            'json' => $data
+            'json' => $data,
+            'query' => $query
         ]);
         $responseBody = $resp->getBody()->getContents();
 

@@ -16,8 +16,7 @@ $app->post('/api/Box/updateTask', function ($request, $response) {
     $data['message'] = $post_data['args']['message'];
 
     if(!empty($post_data['args']['dueAt'])){
-        $dueAt = new DateTime($post_data['args']['dueAt']);
-        $data['due_at'] = $dueAt->format("c");
+        $data['due_at'] = $post_data['args']['dueAt'];
     }
     
     $query_str = $settings['default_url'] . "tasks/$taskId";

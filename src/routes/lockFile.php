@@ -17,7 +17,7 @@ $app->post('/api/Box/lockFile', function ($request, $response) {
 
     $data= [];
 
-    $optionalParam = ['lockExpiresAt'=>'expires_at', 'lockIsDownloadPrevented'=>'is_download_prevented'];
+    $optionalParam = ['lockExpiresAt'=>'expires_at'];
 
 
     $data['fields'] = "lock";
@@ -28,6 +28,14 @@ $app->post('/api/Box/lockFile', function ($request, $response) {
         if(array_key_exists($key, $optionalParam) && !empty($value))
         {
             $data['lock'][$optionalParam[$key]] = $value;
+        }
+    }
+
+    if(isset($post_data['args']['lockIsDownloadPrevented'])){
+        if($post_data['args']['lockIsDownloadPrevented'] == "true"){
+            $data['is_download_prevented'] = true;
+        } else {
+            $data['is_download_prevented'] = false;
         }
     }
 

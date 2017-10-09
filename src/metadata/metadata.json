@@ -1513,13 +1513,13 @@
         },
         {
           "name": "createdAtRange",
-          "type": "DatePicker",
+          "type": "String",
           "info": "The date when the item was created. Specify the date range using RFC3339 timestamps separated by a comma. For example: `2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.",
           "required": false
         },
         {
           "name": "updatedAtRange",
-          "type": "DatePicker",
+          "type": "String",
           "info": "The date when the item was updated. Specify the date range using RFC3339 timestamps separated by a comma. For example: `2014-05-15T13:35:01-07:00,2014-05-17T13:35:01-07:00. Either the beginning date or the ending date may be empty, but the separating comma is required. For example, if you omit the beginning date, then the ending date must begin with a comma.",
           "required": false
         },

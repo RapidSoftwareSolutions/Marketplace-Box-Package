@@ -191,7 +191,7 @@ Get all of the comments on a file.
 | accessToken| String| Access token is a data string that enables Box to verify that a request belongs to an authorized session.
 | fileId     | String| File Id
 | fields     | List| Comma-separated list of fields to include in the response
-| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging https://developer.box.com/reference#offset-based-paging
+| offset     | Number| The offset of the item at which to begin the response. See offset-based paging for details. https://developer.box.com/reference#offset-based-paging
 | limit      | Number| The maximum number of items to return
 
 ## Box.getFileTasks

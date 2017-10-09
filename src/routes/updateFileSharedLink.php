@@ -29,9 +29,14 @@ $app->post('/api/Box/updateFileSharedLink', function ($request, $response) {
     {
         $data['shared_link'] = ["unshared_at"=>$post_data['args']['sharedLinkUnsharedAt']];
     }
-    if(!empty($post_data['args']['sharedLinkPermissionsCanDownload']))
+
+    if(isset($post_data['args']['sharedLinkPermissionsCanDownload']))
     {
-        $data['shared_link'] = ["permissions"=>["can_download"=>$post_data['args']['sharedLinkPermissionsCanDownload']]];
+        if($post_data['args']['sharedLinkPermissionsCanDownload'] == "true"){
+            $data['shared_link']["permissions"]["can_download"] = true;
+        } else {
+            $data['shared_link']["permissions"]["can_download"] = false;
+        }
     }
 
 

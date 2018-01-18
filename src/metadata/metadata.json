@@ -1530,24 +1530,7 @@
           "required": false
         },
         {
-          "name": "testField",
-          "type": "String",
-          "info": "Return only files within a stated size range. Specify the range in bytes with lower and upper bounds separated by a comma, like so:lower_bound_size,upper_bound_size, where 1MB is 1,000,000 bytes. You can specify only the lower bound if you end this parameter with a comma. You can specify only the upper bound by placing a comma at the beginning of the number.",
-          "required": false
-        },
-        {
           "name": "ownerUserIds",
-          "type": "List",
-          "info": "Search for objects by owner. Requires a user ID or a set of comma-delimited user IDs, like so: user_id_1,user_id_2",
-          "required": false,
-          "structure": {
-            "name": "userId",
-            "type": "String",
-            "info": "Single user id."
-          }
-        },
-        {
-          "name": "testArrayField",
           "type": "List",
           "info": "Search for objects by owner. Requires a user ID or a set of comma-delimited user IDs, like so: user_id_1,user_id_2",
           "required": false,

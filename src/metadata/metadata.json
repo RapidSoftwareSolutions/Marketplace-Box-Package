@@ -5155,54 +5155,7 @@
         "info": "Success"
       }]
     },
-    {
-      "name": "updateWebhook",
-      "description": "Update a webhook.",
-      "args": [{
-        "name": "accessToken",
-        "type": "String",
-        "info": "Access token is a data string that enables Box to verify that a request belongs to an authorized session.",
-        "required": true
-      },
-        {
-          "name": "webhookId",
-          "type": "String",
-          "info": "Webhook Id",
-          "required": true
-        },
-        {
-          "name": "targetType",
-          "type": "String",
-          "info": "Target type",
-          "required": false
-        },
-        {
-          "name": "targetId",
-          "type": "String",
-          "info": "Target Id",
-          "required": false
-        },
-        {
-          "name": "triggers",
-          "type": "String",
-          "info": "Event types that trigger notifications for the target. Example: FILE.UPLOADED,FILE.DOWNLOADED",
-          "required": false
-        },
-        {
-          "name": "address",
-          "type": "String",
-          "info": "The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.",
-          "required": false
-        }
-      ],
-      "callbacks": [{
-        "name": "error",
-        "info": "Error"
-      }, {
-        "name": "success",
-        "info": "Success"
-      }]
-    },
+
     {
       "name": "deleteWebhook",
       "description": "Delete a webhook.",

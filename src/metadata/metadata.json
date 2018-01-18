@@ -61,7 +61,7 @@
         {
           "name": "clientId",
           "type": "credentials",
-          "info": "The client ID of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
+          "info": "The client id of the application requesting authentication. To get the client ID for your application, log in to your Box developer console and click the Edit Application link for the application you're working with. In the OAuth 2 Parameters section of the configuration page, find the item labeled",
           "required": true
         },
         {
@@ -102,7 +102,7 @@
         {
           "name": "fields",
           "type": "List",
-          "info": "List of fields to include in the response",
+          "info": "List of fields to include in the response.",
           "required": false,
           "structure": {
             "name": "field",
